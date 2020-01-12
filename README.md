@@ -19,12 +19,17 @@ Dans le fichier *conf/tomcat-users.xml*, ajouter la balise :
 
 Télécharger la dernière version du serveur SPARQL [Apache Jena Fuseki](https://jena.apache.org/download/), à placer dans le même répertoire que *SempicRDF*
 
-Il est également nécessaire d'avoir un serveur MySQL, dans lequel vous aurez créé une nouvelle base de données nommée *SempicDB*
+Il est également nécessaire d'avoir un serveur MySQL qui tourne, dans lequel vous aurez créé une nouvelle base de données nommée *SempicDB*
 
 ### Exécution
 
-Lancer l'application depuis le Framework de votre choix, ou en exécutant le .jar
+Lancer l'application depuis le Framework de votre choix, ou en exécutant les commandes :
 
+```
+cd JEEWSAppli/
+mvn package tomee:exec
+jar -jar target/JEEWSAppli-1-0-exec.jar
+```
 
 ## Auteurs
 
