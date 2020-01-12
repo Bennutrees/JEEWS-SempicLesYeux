@@ -195,7 +195,9 @@ public class SessionTools implements Serializable {
      }
     
     public String logout() {
-        ((HttpSession)facesContext.getExternalContext().getSession(false)).invalidate();
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(false);
+        session.invalidate();
+        // return "/login?faces-redirect=true";
         return "logout";
     }
 }

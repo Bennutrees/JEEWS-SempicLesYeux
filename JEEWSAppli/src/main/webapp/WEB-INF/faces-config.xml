@@ -47,13 +47,14 @@
             <redirect/>  
         </navigation-case>
     </navigation-rule>
-    
+
     <navigation-rule>
         <description>Logout page</description>
         <from-view-id>*</from-view-id>
         <navigation-case>
+            <from-action>#{sessionTools.logout}</from-action>
             <from-outcome>logout</from-outcome>
-            <to-view-id>/goodbye.xhtml</to-view-id>
+            <to-view-id>/login.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>

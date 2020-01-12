@@ -135,6 +135,7 @@
                 <version>8.0.0</version>
                 <configuration>
                     <tomeeClassifier>plume</tomeeClassifier>
+                    <contextReloadable>true</contextReloadable>
                 </configuration>
             </plugin>
         </plugins>

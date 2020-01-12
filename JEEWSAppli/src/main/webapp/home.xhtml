@@ -11,12 +11,16 @@
         <title>Welcome page</title>
     </h:head>
     <h:body>
-        <p>Welcome to sempic application</p>
+        <p>Welcome #{sessionTools.connectedUser.firstname} to the JEEWS Application</p>
         
         <p>Avalaible actions:</p>
         <ul>
             <li><h:button outcome="create-user" value="Create a user"/></li>
             <li><h:button outcome="list-users" value="List of users"/></li>
+            
+            <li><h:form id="form">
+                <h:commandButton action="#{sessionTools.logout}" value="Déconnexion" />
+            </h:form></li>
         </ul>
     </h:body>
 </html>
