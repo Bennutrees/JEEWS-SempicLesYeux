@@ -5,4 +5,4 @@
 
 # Ignoring target
 
-/SempicAuth/target/*
+/*/target/*
