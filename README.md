@@ -1,5 +1,4 @@
 # JEEWS-SempicLesYeux
-# JEEWS-SempicLesYeux
 
 Application de gestion d'albums photos et d'annotation des photos
 utilisant les technologies du web sémantique.
