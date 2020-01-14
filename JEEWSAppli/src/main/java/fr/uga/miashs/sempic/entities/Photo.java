@@ -24,7 +24,16 @@ import javax.validation.constraints.NotNull;
  * @author benjamin
  */
 
-
+@NamedQueries({
+    @NamedQuery(
+            name = "findPhotoByAlbum",
+            query = "SELECT DISTINCT photo FROM Photo photo WHERE photo.album=:album"
+    ),
+    @NamedQuery(
+            name = "findPhotoById",
+            query = "SELECT DISTINCT photo FROM Photo photo WHERE photo.id=:id"
+    )       
+})
 @Entity
 @Table(name = "photos")
 public class Photo implements Serializable {
@@ -46,7 +55,7 @@ public class Photo implements Serializable {
     public Album getAlbum() {
         return album;
     }
-
+    
     public void setId(long id) {
         this.id = id;
     }
