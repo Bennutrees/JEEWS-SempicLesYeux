@@ -51,7 +51,7 @@ public abstract class AbstractJpaFacade<K, T> {
     }
     
     /** Interceptor method that intercept calls to all methods of this class.
-     *  It is used to catch and process persistence exception and wrap them nto SempicException.
+     *  It is used to catch and process persistence exception and wrap them into SempicException.
      */
     @AroundInvoke
     private Object catchDatabaseException(InvocationContext ctx) throws Exception {
