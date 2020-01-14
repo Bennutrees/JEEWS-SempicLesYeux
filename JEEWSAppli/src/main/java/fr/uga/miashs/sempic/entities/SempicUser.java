@@ -7,6 +7,7 @@ package fr.uga.miashs.sempic.entities;
 
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.List;
 import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -84,6 +85,9 @@ public class SempicUser implements Serializable {
     @Column(columnDefinition="VARCHAR(5)")
     private SempicUserType userType;
     
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "owner")
+    @Column(name = "albums")
+    private List<Album> albums;
 
     public SempicUser() {
         userType=SempicUserType.USER;

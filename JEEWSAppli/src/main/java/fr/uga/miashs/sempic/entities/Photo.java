@@ -17,34 +17,26 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author benjamin
  */
 
-@NamedQueries({
-    @NamedQuery(
-            name = "findPhotoByAlbum",
-            query = "SELECT DISTINCT photo FROM Photos WHERE photo.Album=:album"
-    ),
-    @NamedQuery(
-            name = "findPhotoById",
-            query = "SELECT DISTINCT photo FROM Photos WHERE photo.Id=:id"
-    )       
-})
+
 @Entity
-@Table(name = "Photos")
+@Table(name = "photos")
 public class Photo implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id")
+    @Column(name = "id")
     private long id;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "album_id")
-    @Column(name = "Album", nullable = false)
+    @NotNull
     private Album album;
 
     public long getId() {

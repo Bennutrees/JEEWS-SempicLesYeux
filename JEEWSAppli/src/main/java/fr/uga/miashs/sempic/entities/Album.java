@@ -18,31 +18,37 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author benjamin
  */
 @Entity
-@Table(name = "Albums", uniqueConstraints = {
+@Table(name = "albums", uniqueConstraints = {
     @UniqueConstraint(name = "UniqueAlbumNameForUser", columnNames = {"title", "owner_id"})
 })
 public class Album implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "Id")
+    @Column(name = "id")
     private long id;
     
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "photo")
-    @Column(name = "Photos")
+    @Column(name = "title")
+    @NotBlank
+    private String title;
+    
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "album")
+    @Column(name = "photos")
     private List<Photo> photos;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_id")
-    @Column(name = "Owner", nullable = false)
+    @NotNull
     private SempicUser owner;
-
+    
     public long getId() {
         return id;
     }
