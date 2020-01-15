@@ -128,5 +128,20 @@
             <to-view-id>/user/create-album.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-
+    
+    <navigation-rule>
+        <description>Album delete action result</description>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-action>#{albumBeans.delete(Long)}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/user/main-page.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{albumBeans.delete(Long)}</from-action>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/user/album.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

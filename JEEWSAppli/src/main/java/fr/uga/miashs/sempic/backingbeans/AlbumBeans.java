@@ -86,7 +86,7 @@ public class AlbumBeans implements Serializable {
         } catch (SempicModelUniqueException e) {
             return "failure";
         }
-        return "success";
+        return "main-page?faces-redirect=true";
     }
     
     public String albumDetails(Long albumID) {
