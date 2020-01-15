@@ -52,6 +52,10 @@ public class AlbumBeans implements Serializable {
     public Album getCurrentAlbum() {
         return currentAlbum;
     }
+    
+    public List<Album> getAlbumsByOwner(SempicUser user) {
+        return this.albumDAO.findByOwner(user);
+    }
 
     public void setCurrentAlbum(Album currentAlbum) {
         this.currentAlbum = currentAlbum;
