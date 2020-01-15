@@ -18,7 +18,7 @@
             <li style="background-color:#{(metadata.odd ? 'grey' : 'white')}; border:1px solid grey">
                 #{album.title}
                 <h:form style="display:inline-block;">
-                    <h:commandButton value="See" action="#{albumBeans.albumDetails(album)}" />
+                    <h:commandButton value="See" action="#{albumBeans.albumDetails(album.id)}" />
                 </h:form>
             </li>
         </c:forEach>

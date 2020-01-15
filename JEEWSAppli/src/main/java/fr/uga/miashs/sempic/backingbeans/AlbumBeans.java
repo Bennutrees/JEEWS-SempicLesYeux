@@ -81,8 +81,12 @@ public class AlbumBeans implements Serializable {
         return "success";
     }
     
-    public Album getAlbum(Long albumID) throws ResourceNotFoundException {
-        return albumDAO.findById(albumID);
+    public String albumDetails(Long albumID) {
+        return "album?faces-redirect=true&albumID="+albumID;
+    }
+    
+    public void getAlbum(Long albumID) throws ResourceNotFoundException {
+        this.currentAlbum = albumDAO.findById(albumID);
     }
     
     public List<Photo> getPhotos() {

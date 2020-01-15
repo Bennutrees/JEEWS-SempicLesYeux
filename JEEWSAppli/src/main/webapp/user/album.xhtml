@@ -8,7 +8,8 @@
     <h:head>
     </h:head>
     <h:body>
-        <h1>album #{albumBeans.currentAlbum.title}</h1>
+        <h:outputText value="#{albumBeans.getAlbum(param.albumID)}"/>
+        <h1>album #{albumBeans.currentAlbum.title}  </h1>
         
         <h:form>
             <h:commandButton value="Delete album" action="#{album}" />
