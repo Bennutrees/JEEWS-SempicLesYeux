@@ -57,4 +57,10 @@ public class AlbumFacade extends AbstractJpaFacade<Long,Album> {
             .setHint("javax.persistence.fetchgraph", entityGraph)
             .getResultList();
     }
+    
+    public List<Album> findByOwner(SempicUser owner) {
+        Query q = getEntityManager().createNamedQuery("findOwnerAlbums");
+        q.setParameter("owner", owner);
+        return q.getResultList();
+    }
 }

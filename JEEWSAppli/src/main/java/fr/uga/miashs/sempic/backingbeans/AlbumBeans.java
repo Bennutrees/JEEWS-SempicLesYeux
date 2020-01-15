@@ -57,6 +57,10 @@ public class AlbumBeans implements Serializable {
         this.currentAlbum = currentAlbum;
     }
     
+    public void setCurrentAlbum(Long albumID) throws ResourceNotFoundException {
+        this.currentAlbum = albumDAO.readEager(albumID);
+    }
+    
     public String create() {        
         try {
             albumDAO.create(currentAlbum);
@@ -83,10 +87,6 @@ public class AlbumBeans implements Serializable {
     
     public String albumDetails(Long albumID) {
         return "album?faces-redirect=true&albumID="+albumID;
-    }
-    
-    public void getAlbum(Long albumID) throws ResourceNotFoundException {
-        return albumDAO.readEager(albumID);
     }
     
     public List<Photo> getPhotos() {

@@ -19,6 +19,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedAttributeNode;
 import javax.persistence.NamedEntityGraph;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -34,9 +36,11 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  * @author benjamin
  */
-@Entity
-@Table(name = "albums", uniqueConstraints = {
-    @UniqueConstraint(name = "UniqueAlbumNameForUser", columnNames = {"title", "owner_id"})
+@NamedQueries({
+    @NamedQuery(
+        name = "findOwnerAlbums",
+        query = "SELECT DISTINCT album FROM Album album WHERE album.owner:=owner"
+    )
 })
 @NamedEntityGraph(
   name = "graph.Album.title-owner",
@@ -47,6 +51,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 )
 @XmlRootElement
 @XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
+@Entity
+@Table(name = "albums", uniqueConstraints = {
+    @UniqueConstraint(name = "UniqueAlbumNameForUser", columnNames = {"title", "owner_id"})
+})
 public class Album implements Serializable {
     public final static String PREFIX_ALBUM="/albums/";
     
