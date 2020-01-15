@@ -6,7 +6,9 @@
 package fr.uga.miashs.sempic.entities;
 
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -15,11 +17,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedAttributeNode;
+import javax.persistence.NamedEntityGraph;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -29,7 +38,17 @@ import javax.validation.constraints.NotNull;
 @Table(name = "albums", uniqueConstraints = {
     @UniqueConstraint(name = "UniqueAlbumNameForUser", columnNames = {"title", "owner_id"})
 })
+@NamedEntityGraph(
+  name = "graph.Album.title-owner",
+  attributeNodes = {
+    @NamedAttributeNode("title"),
+    @NamedAttributeNode("owner"),
+  }
+)
+@XmlRootElement
+@XmlAccessorType(XmlAccessType.PUBLIC_MEMBER)
 public class Album implements Serializable {
+    public final static String PREFIX_ALBUM="/albums/";
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,7 +59,7 @@ public class Album implements Serializable {
     @NotBlank
     private String title;
     
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "album")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "album", cascade = CascadeType.REMOVE)
     @Column(name = "photos")
     private List<Photo> photos;
     
@@ -52,13 +71,20 @@ public class Album implements Serializable {
     public long getId() {
         return id;
     }
+    
+    
+    @XmlID
+    @XmlAttribute(name="id")
+    public String getIdUri() {
+        return PREFIX_ALBUM + this.getId();
+    }
 
     public String getTitle() {
         return title;
     }
     
     public List<Photo> getPhotos() {
-        return photos;
+        return Collections.unmodifiableList(photos);
     }
 
     public SempicUser getOwner() {

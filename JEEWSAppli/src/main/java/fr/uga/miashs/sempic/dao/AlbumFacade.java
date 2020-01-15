@@ -9,10 +9,13 @@ import fr.uga.miashs.sempic.ResourceNotFoundException;
 import fr.uga.miashs.sempic.SempicModelException;
 import fr.uga.miashs.sempic.SempicModelUniqueException;
 import fr.uga.miashs.sempic.entities.Album;
+import fr.uga.miashs.sempic.entities.SempicUser;
 import java.util.List;
 import javax.ejb.Stateful;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.persistence.EntityGraph;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,6 +29,11 @@ public class AlbumFacade extends AbstractJpaFacade<Long,Album> {
     }
     
     @Override
+    public Long create(Album album) throws SempicModelException {
+        return super.create(album);
+    }
+    
+    @Override
     public void deleteById(Long albumID) throws SempicModelException {
         try {
             super.deleteById(albumID);
@@ -34,13 +42,19 @@ public class AlbumFacade extends AbstractJpaFacade<Long,Album> {
         }
     }
     
-    public Album findById(Long albumId) throws ResourceNotFoundException {
-	try {
-            Album album = super.read(albumId);
-            return album;
-        } catch (Exception e) {
-            throw new ResourceNotFoundException("Album non trouvé pour l'id : " + albumId);
-        }
+    public Album readEager(long id) {
+        EntityGraph entityGraph = this.getEntityManager().getEntityGraph("graph.Album.title-owner");
+        return (Album) getEntityManager().createQuery("SELECT album FROM Album album WHERE album.id=:id")
+            .setParameter("id", id)
+            .setHint("javax.persistence.fetchgraph", entityGraph)
+            .getSingleResult();
     }
     
+    @Override
+    public List<Album> findAll() {
+        EntityGraph entityGraph = this.getEntityManager().getEntityGraph("graph.Album.title-owner");
+        return getEntityManager().createQuery(this.findAllQuery())
+            .setHint("javax.persistence.fetchgraph", entityGraph)
+            .getResultList();
+    }
 }

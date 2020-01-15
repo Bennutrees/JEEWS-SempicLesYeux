@@ -52,7 +52,7 @@ public class GroupBeans implements Serializable {
         current=new SempicGroup();
     }
     
-    public void setOwnerId(String id) throws SempicModelException {
+    public void setOwnerId(String id) {
         System.out.println(id); 
         current.setOwner(userDao.read(Long.valueOf(id)));
     }

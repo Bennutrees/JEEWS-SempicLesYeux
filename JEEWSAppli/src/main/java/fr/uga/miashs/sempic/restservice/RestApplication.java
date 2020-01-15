@@ -46,6 +46,7 @@ public class RestApplication extends Application {
         
         res.add(MOXyJsonProvider.class); //Uses moxy a JAXB provider that produce Json from xml annotations
         res.add(SempicUserService.class);
+        //res.add(AlbumService.class);
         return res;
     }
 }

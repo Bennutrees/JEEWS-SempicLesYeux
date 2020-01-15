@@ -129,7 +129,7 @@ public class SessionTools implements Serializable {
     @SelectedUser
     @Dependent
     @Named
-    public SempicUser getSelectedUser() throws SempicException, SempicModelException {
+    public SempicUser getSelectedUser() throws SempicException {
         String userId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("userId");
         if (userId == null || getConnectedUser().getUserType() != SempicUserType.ADMIN) {
             return getConnectedUser();
@@ -139,8 +139,6 @@ public class SessionTools implements Serializable {
             return userDao.read(id);
         } catch (NumberFormatException e) {
             throw new SempicException("parameter userId is not a number: "+userId,e);
-        } catch (SempicModelException e) {
-            throw new SempicModelException(e.getMessage());
         }
     }
     

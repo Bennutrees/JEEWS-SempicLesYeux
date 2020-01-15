@@ -86,7 +86,7 @@ public class AlbumBeans implements Serializable {
     }
     
     public void getAlbum(Long albumID) throws ResourceNotFoundException {
-        this.currentAlbum = albumDAO.findById(albumID);
+        return albumDAO.readEager(albumID);
     }
     
     public List<Photo> getPhotos() {
