@@ -5,6 +5,7 @@
  */
 package fr.uga.miashs.sempic.dao;
 
+import fr.uga.miashs.sempic.ResourceNotFoundException;
 import fr.uga.miashs.sempic.SempicModelException;
 import fr.uga.miashs.sempic.SempicModelUniqueException;
 import fr.uga.miashs.sempic.entities.Album;
@@ -33,11 +34,12 @@ public class AlbumFacade extends AbstractJpaFacade<Long,Album> {
         }
     }
     
-    public void findById(Long albumID) throws SempicModelException {
-        try {
-            super.read(albumID);
-        } catch (SempicModelUniqueException e) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+    public Album findById(Long albumId) throws ResourceNotFoundException {
+	try {
+            Album album = super.read(albumId);
+            return album;
+        } catch (Exception e) {
+            throw new ResourceNotFoundException("Album non trouvé pour l'id : " + albumId);
         }
     }
     

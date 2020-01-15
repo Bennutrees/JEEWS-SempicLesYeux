@@ -5,6 +5,7 @@
  */
 package fr.uga.miashs.sempic.backingbeans;
 
+import fr.uga.miashs.sempic.ResourceNotFoundException;
 import fr.uga.miashs.sempic.SempicModelException;
 import fr.uga.miashs.sempic.SempicModelUniqueException;
 import fr.uga.miashs.sempic.dao.AlbumFacade;
@@ -56,10 +57,6 @@ public class AlbumBeans implements Serializable {
         this.currentAlbum = currentAlbum;
     }
     
-    public List<Photo> getPhotos() {
-        return null;
-    }
-    
     public String create() {        
         try {
             albumDAO.create(currentAlbum);
@@ -84,12 +81,11 @@ public class AlbumBeans implements Serializable {
         return "success";
     }
     
-    public String getAlbum(Long albumID) throws SempicModelException {
-        try {
-            albumDAO.findById(albumID);
-        } catch (SempicModelUniqueException e) {
-            return "failure";
-        }
-        return "success";
+    public Album getAlbum(Long albumID) throws ResourceNotFoundException {
+        return albumDAO.findById(albumID);
+    }
+    
+    public List<Photo> getPhotos() {
+        return null;
     }
 }

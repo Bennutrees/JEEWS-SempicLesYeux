@@ -19,14 +19,11 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.enterprise.context.Dependent;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
 import javax.faces.context.FacesContext;
-import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.persistence.NoResultException;
 import javax.security.enterprise.SecurityContext;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -132,7 +129,7 @@ public class SessionTools implements Serializable {
     @SelectedUser
     @Dependent
     @Named
-    public SempicUser getSelectedUser() throws SempicException {
+    public SempicUser getSelectedUser() throws SempicException, SempicModelException {
         String userId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("userId");
         if (userId == null || getConnectedUser().getUserType() != SempicUserType.ADMIN) {
             return getConnectedUser();
@@ -142,6 +139,8 @@ public class SessionTools implements Serializable {
             return userDao.read(id);
         } catch (NumberFormatException e) {
             throw new SempicException("parameter userId is not a number: "+userId,e);
+        } catch (SempicModelException e) {
+            throw new SempicModelException(e.getMessage());
         }
     }
     
