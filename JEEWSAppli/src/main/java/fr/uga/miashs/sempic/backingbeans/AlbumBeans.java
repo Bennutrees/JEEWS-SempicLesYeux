@@ -83,4 +83,13 @@ public class AlbumBeans implements Serializable {
         }
         return "success";
     }
+    
+    public String getAlbum(Long albumID) throws SempicModelException {
+        try {
+            albumDAO.findById(albumID);
+        } catch (SempicModelUniqueException e) {
+            return "failure";
+        }
+        return "success";
+    }
 }

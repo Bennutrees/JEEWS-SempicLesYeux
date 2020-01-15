@@ -111,7 +111,7 @@ public abstract class AbstractJpaFacade<K, T> {
         getEntityManager().remove(getEntityManager().getReference(entityClass, id));
     }
 
-    public T read(K id) {
+    public T read(K id) throws SempicModelException {
         return getEntityManager().find(entityClass, id);
     }
 

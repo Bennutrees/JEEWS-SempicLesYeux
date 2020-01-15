@@ -33,5 +33,12 @@ public class AlbumFacade extends AbstractJpaFacade<Long,Album> {
         }
     }
     
+    public void findById(Long albumID) throws SempicModelException {
+        try {
+            super.read(albumID);
+        } catch (SempicModelUniqueException e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+        }
+    }
     
 }
