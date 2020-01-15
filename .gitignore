@@ -1,7 +1,7 @@
 # Ignoring Servers changes
 
-/apache-jena-fuseki-3.13.0-openllet/*
-/apache-tomee-plume-8.0.0/*
+/apache-jena-fuseki*/*
+/apache-tomee-plume*/*
 
 # Ignoring target
 

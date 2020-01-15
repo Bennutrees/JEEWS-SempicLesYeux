@@ -53,6 +53,10 @@ public class Album implements Serializable {
         return id;
     }
 
+    public String getTitle() {
+        return title;
+    }
+    
     public List<Photo> getPhotos() {
         return photos;
     }
@@ -64,7 +68,11 @@ public class Album implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
-
+    
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    
     public void setPhotos(List<Photo> photos) {
         this.photos = photos;
     }

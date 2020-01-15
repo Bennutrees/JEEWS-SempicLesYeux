@@ -57,9 +57,7 @@ public class AlbumBeans implements Serializable {
     }
     
     public List<Photo> getPhotos() {
-        try {
-            albumDAO.findAll();
-        }
+        return null;
     }
     
     public String create() {        

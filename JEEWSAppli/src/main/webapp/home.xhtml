@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <f:metadata>
         <f:viewAction  action="home"/>
@@ -15,9 +16,13 @@
         
         <p>Avalaible actions:</p>
         <ul>
-            <li><h:button outcome="create-user" value="Create a user"/></li>
-            <li><h:button outcome="list-users" value="List of users"/></li>
+            <c:if test="${sessionTools.connectedUser.userType eq 'ADMIN'}">
+                <li><h:button outcome="create-user" value="Create a user"/></li>
+                <li><h:button outcome="list-users" value="List of users"/></li>
+            </c:if>
             
+                <li><h:button outcome="my-albums" value="My albums"/></li>
+                <li><h:button outcome="create-group" value="Create groups"/></li>
             <li><h:form id="form">
                 <h:commandButton action="#{sessionTools.logout}" value="Déconnexion" />
             </h:form></li>

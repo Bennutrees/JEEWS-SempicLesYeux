@@ -156,6 +156,11 @@ public class SempicUser implements Serializable {
         return Collections.unmodifiableSet(memberOf);
     }
     
+    public List<Album> getAlbums() {
+        if (memberOf==null) return Collections.emptyList();
+        return Collections.unmodifiableList(albums);
+    }
+    
     public SempicUserType getUserType() {
         return userType;
     }

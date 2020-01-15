@@ -17,13 +17,32 @@
             </navigation-case>
         </navigation-rule>
     -->
+    <navigation-rule>
+        <description>User album page</description>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>my-albums</from-outcome>
+            <to-view-id>user/main-page.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <description>create album page</description>
+        <from-view-id>user/albums.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>create-albums</from-outcome>
+            <to-view-id>user/create-album.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
     
     <navigation-rule>
         <description>Create user page</description>
         <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>create-user</from-outcome>
-            <to-view-id>/create-user.xhtml</to-view-id>
+            <to-view-id>admin/create-user.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -33,7 +52,7 @@
         <from-view-id>*</from-view-id>
         <navigation-case>
             <from-outcome>create-group</from-outcome>
-            <to-view-id>/admin/create-group.xhtml</to-view-id>
+            <to-view-id>/user/create-group.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
     </navigation-rule>
@@ -71,7 +90,7 @@
         <navigation-case>
             <from-action>#{createUser.create()}</from-action>
             <from-outcome>failure</from-outcome>
-            <to-view-id>/create-user.xhtml</to-view-id>
+            <to-view-id>admin/create-user.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     
@@ -88,6 +107,22 @@
             <from-action>#{createGroup.create()}</from-action>
             <from-outcome>failure</from-outcome>
             <to-view-id>#{view.viewId}</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <description>Album creation action result</description>
+        <from-view-id>/user/create-album.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{albumBeans.create()}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/user/album.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{albumBeans.create()}</from-action>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>/user/create-album.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 
