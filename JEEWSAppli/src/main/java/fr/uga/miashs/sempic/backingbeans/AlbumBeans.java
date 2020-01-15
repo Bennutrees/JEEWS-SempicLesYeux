@@ -7,73 +7,64 @@ package fr.uga.miashs.sempic.backingbeans;
 
 import fr.uga.miashs.sempic.SempicModelException;
 import fr.uga.miashs.sempic.SempicModelUniqueException;
-import fr.uga.miashs.sempic.dao.SempicUserFacade;
+import fr.uga.miashs.sempic.dao.AlbumFacade;
+import fr.uga.miashs.sempic.entities.Album;
+import fr.uga.miashs.sempic.entities.Photo;
 import fr.uga.miashs.sempic.entities.SempicUser;
+import fr.uga.miashs.sempic.qualifiers.SelectedUser;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.List;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
-import javax.validation.constraints.NotBlank;
 
 /**
  *
- * @author Jerome David <jerome.david@univ-grenoble-alpes.fr>
+ * @author benjamin
  */
 @Named
 @ViewScoped
-public class CreateUser implements Serializable {
-    
-    private SempicUser current;
+public class AlbumBeans implements Serializable {
     
     @Inject
-    private SempicUserFacade userDao;
+    private AlbumFacade albumDAO;
     
+    @Inject
+    @SelectedUser
+    private SempicUser selectedUser;
     
-
+    private Album currentAlbum;
     
-    public CreateUser() {
+    public AlbumBeans() {
+        
     }
     
     @PostConstruct
     public void init() {
-        current=new SempicUser();
+        currentAlbum = new Album();
+        currentAlbum.setOwner(selectedUser);
     }
 
-
-    public SempicUser getCurrent() {
-        return current;
+    public Album getCurrentAlbum() {
+        return currentAlbum;
     }
 
-    public void setCurrent(SempicUser current) {
-        this.current = current;
+    public void setCurrentAlbum(Album currentAlbum) {
+        this.currentAlbum = currentAlbum;
     }
     
-    public String getPassword() {
-        return null;
-    }
-    
-    
-    public void setPassword(@NotBlank(message="Password is required") String password) {
-        getCurrent().setPassword(password);
-    }
-    
-    /*public String generateHash(String s) {
-        return hashAlgo.generate(s.toCharArray());
-    }*/
-    
-    public String create() {
-        //System.out.println(current);
-        
+    public List<Photo> getPhotos() {
         try {
-            userDao.create(current);
+            albumDAO.findAll();
+        }
+    }
+    
+    public String create() {        
+        try {
+            albumDAO.create(currentAlbum);
         } 
         catch (SempicModelUniqueException ex) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("un utilisateur avec cette adresse mail existe déjà"));
@@ -83,7 +74,15 @@ public class CreateUser implements Serializable {
            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(ex.getMessage()));
             return "failure";
         }
-        
+        return "success";
+    }
+    
+    public String delete(Long albumID) throws SempicModelException {
+        try {
+            albumDAO.deleteById(albumID);
+        } catch (SempicModelUniqueException e) {
+            return "failure";
+        }
         return "success";
     }
 }

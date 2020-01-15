@@ -32,7 +32,7 @@ import javax.validation.constraints.Positive;
  */
 @Named
 @ViewScoped
-public class CreateGroup implements Serializable {
+public class GroupBeans implements Serializable {
     
     private SempicGroup current;
     
@@ -43,7 +43,7 @@ public class CreateGroup implements Serializable {
     private SempicUserFacade userDao;
 
     
-    public CreateGroup() {
+    public GroupBeans() {
         
     }
     

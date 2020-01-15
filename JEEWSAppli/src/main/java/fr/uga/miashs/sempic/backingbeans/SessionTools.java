@@ -129,7 +129,7 @@ public class SessionTools implements Serializable {
      * @return
      */
     @Produces
-    @Selected
+    @SelectedUser
     @Dependent
     @Named
     public SempicUser getSelectedUser() throws SempicException {
