@@ -47,7 +47,7 @@ public class Photo implements Serializable {
     @JoinColumn(name = "album_id")
     @NotNull
     private Album album;
-
+    
     public long getId() {
         return id;
     }

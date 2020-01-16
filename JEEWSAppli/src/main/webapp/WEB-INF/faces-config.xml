@@ -39,6 +39,16 @@
     </navigation-rule>
     
     <navigation-rule>
+        <description>Create photo page</description>
+        <from-view-id>/user/album.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>create-photo</from-outcome>
+            <to-view-id>/user/create-photo.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
         <description>List users page</description>
         <from-view-id>*</from-view-id>
         <navigation-case>

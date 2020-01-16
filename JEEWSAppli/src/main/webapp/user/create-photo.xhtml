@@ -12,10 +12,10 @@
         <h:form>
             <h:panelGrid>
                 <label for="file">Fichier: </label>
-                <h:inputFile id="photoFile" value="#{createPhoto.file}"/>
+                <h:inputFile id="photoFile" value="#{photoBeans.photoPart}"/>
                 <h:message for="file" />
             </h:panelGrid>
-            <h:commandButton value="Créer" action="#{createPhoto.create()}"/>
+            <h:commandButton value="Créer" action="#{photoBeans.create()}"/>
 
             <h:messages globalOnly="true"/>
         </h:form>
