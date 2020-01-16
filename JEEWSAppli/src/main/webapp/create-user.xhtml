@@ -12,22 +12,22 @@
         <h:form>
             <h:panelGrid columns = "3">
                 <label for="lastname">Nom:</label>
-                <h:inputText id="lastname" h5:placeholder="Dupond" value="#{createUser.current.lastname}"/>
+                <h:inputText id="lastname" h5:placeholder="Dupond" value="#{userBeans.current.lastname}"/>
                 <h:message for="lastname"/>
 
                 <label for="firstname">Prenom:</label>
-                <h:inputText id="firstname" value="#{createUser.current.firstname}"/>
+                <h:inputText id="firstname" value="#{userBeans.current.firstname}"/>
                 <h:message for="firstname"/>
 
                 <label for="email">Email:</label>
-                <h:inputText id="email" h5:type="email" value="#{createUser.current.email}"/>
+                <h:inputText id="email" h5:type="email" value="#{userBeans.current.email}"/>
                 <h:message for="email"/>
 
                 <label for="password">Password</label>
-                <h:inputSecret id="password" value="#{createUser.password}"/>
+                <h:inputSecret id="password" value="#{userBeans.password}"/>
                 <h:message for="password"/>
 
-                <h:commandButton value="Créer" action="#{createUser.create()}"/>
+                <h:commandButton value="Créer" action="#{userBeans.create()}"/>
             </h:panelGrid>
             <h:messages globalOnly="true"/>
 

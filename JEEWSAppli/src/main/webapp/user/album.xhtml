@@ -9,7 +9,22 @@
     </h:head>
     <h:body>
         <h:outputText value="#{albumBeans.setCurrentAlbum(param.albumID)}"/>
-        <h1>album #{albumBeans.currentAlbum.title}  </h1>
+        <h1>album #{albumBeans.currentAlbum.title}</h1>
+        
+        <h:button outcome="create-photo" value="new photo"/>
+        <hr/>
+        
+        <ul>
+            <c:forEach var="album" items="${albumBeans.getAlbumsByOwner(sessionTools.connectedUser)}" varStatus="metadata">
+            <li style="background-color:#{(metadata.odd ? 'grey' : 'white')}; border:1px solid grey">
+                #{album.title}
+                <h:form style="display:inline-block;">
+                    <h:commandButton value="See" action="#{albumBeans.albumDetails(album.id)}" />
+                </h:form>
+            </li>
+        </c:forEach>
+        </ul>
+        
         
         <h:form>
             <h:commandButton value="Delete album" action="#{albumBeans.delete(albumBeans.currentAlbum.id)}" />

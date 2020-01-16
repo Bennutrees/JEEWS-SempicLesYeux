@@ -11,6 +11,7 @@ import fr.uga.miashs.sempic.SempicModelException;
 import fr.uga.miashs.sempic.dao.SempicUserFacade;
 import fr.uga.miashs.sempic.entities.SempicGroup;
 import fr.uga.miashs.sempic.entities.SempicUser;
+import fr.uga.miashs.sempic.qualifiers.SelectedUser;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Level;
@@ -34,6 +35,10 @@ import javax.validation.constraints.Positive;
 @ViewScoped
 public class GroupBeans implements Serializable {
     
+    @Inject
+    @SelectedUser
+    private SempicUser selectedUser;
+    
     private SempicGroup current;
     
     @Inject
@@ -50,6 +55,7 @@ public class GroupBeans implements Serializable {
     @PostConstruct
     public void init() {
         current=new SempicGroup();
+        current.setOwner(selectedUser);
     }
     
     public void setOwnerId(String id) {
