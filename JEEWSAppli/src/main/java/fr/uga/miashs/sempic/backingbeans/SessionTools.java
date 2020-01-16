@@ -43,6 +43,11 @@ public class SessionTools implements Serializable {
     @Inject
     private SempicUserFacade userDao;
     
+    @Inject
+    private AlbumFacade albumDao;
+    
+    @Inject PhotoFacade photoDao;
+    
 
     private SempicUser connectedUser;
     
@@ -138,9 +143,54 @@ public class SessionTools implements Serializable {
             long id = Long.parseLong(userId);
             return userDao.read(id);
         } catch (NumberFormatException e) {
-            throw new SempicException("parameter userId is not a number: "+userId,e);
+            throw new SempicException("User id ust be Long type : " + userId,e);
         }
     }
+    
+    @Produces
+    @SelectedAlbum
+    @Dependent
+    @Named
+    public Album getSelectedAlbum() throws SempicException {
+        String albumId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("albumId");
+        if (albumId != null) {
+            try {
+                long albumLongId = Long.parseLong(albumId);
+                Album selectedAlbum = albumDao.read(albumLongId);
+                SempicUser currentUser = getConnectedUser();
+                if (currentUser != null && selectedAlbum.getOwner().equals(currentUser)) {
+                    return selectedAlbum;
+                }
+                throw new SempicException(currentUser + " is not allowed to access this album");
+            } catch (NumberFormatException e){
+                throw new SempicException("Album id must be Long type : " + albumId, e);
+            }
+        }
+        throw new SempicException("Missing Album id");
+    }
+    
+    @Produces
+    @SelectedPhoto
+    @Dependent
+    @Named
+    public Photo getSelectedPhoto() throws SempicException {
+        String photoId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("albumId");
+        if (photoId != null) {
+            try {
+                long photoLongId = Long.parseLong(photoId);
+                Photo selectedPhoto = photoDao.read(photoLongId);
+                SempicUser currentUser = getConnectedUser();
+                if (currentUser != null) {
+                    return selectedPhoto;
+                }
+                throw new SempicException(currentUser + " is not allowed to access this photo");
+            } catch (NumberFormatException e){
+                throw new SempicException("Photo id must be Long type : " + photoId, e);
+            }
+        }
+        throw new SempicException("Missing Photo id");
+    }
+    
     
     public boolean isNotLogged() {
         return (getConnectedUser()==null);
