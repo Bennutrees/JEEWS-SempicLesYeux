@@ -22,7 +22,7 @@ import javax.inject.Named;
  */
 @Named
 @RequestScoped
-public class ListUsers {
+public class ViewUserBeans {
 
     private DataModel<SempicUser> dataModel;
 
