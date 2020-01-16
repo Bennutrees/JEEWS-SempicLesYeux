@@ -39,7 +39,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(
         name = "findOwnerAlbums",
-        query = "SELECT DISTINCT album FROM Album album WHERE album.owner:=owner"
+        query = "SELECT DISTINCT album FROM Album album WHERE album.owner=:owner"
     )
 })
 @NamedEntityGraph(
