@@ -52,6 +52,10 @@ public class AlbumBeans implements Serializable {
     public Album getCurrentAlbum() {
         return currentAlbum;
     }
+    
+    public List<Album> getAlbumsByOwner(SempicUser user) {
+        return this.albumDAO.findByOwner(user);
+    }
 
     public void setCurrentAlbum(Album currentAlbum) {
         this.currentAlbum = currentAlbum;
@@ -82,7 +86,7 @@ public class AlbumBeans implements Serializable {
         } catch (SempicModelUniqueException e) {
             return "failure";
         }
-        return "success";
+        return "main-page?faces-redirect=true";
     }
     
     public String albumDetails(Long albumID) {
