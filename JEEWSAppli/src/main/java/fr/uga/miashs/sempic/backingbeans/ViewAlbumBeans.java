@@ -21,17 +21,15 @@ import javax.inject.Inject;
  * @author benjamin
  */
 public class ViewAlbumBeans {
+        
+    @Inject
+    private PhotoFacade photoDao;
+    @Inject
+    private PhotoBeans photoBeans;
     
     @Inject
     @SelectedAlbum
     private Album currentAlbum;
-    
-    @Inject
-    private PhotoFacade photoDao;
-    
-    @Inject
-    private PhotoBeans photoBeans;
-    
     
     public Album getCurrentAlbum() {
         return currentAlbum;
