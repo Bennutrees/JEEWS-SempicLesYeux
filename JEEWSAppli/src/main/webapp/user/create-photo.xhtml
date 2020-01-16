@@ -7,15 +7,14 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     
     <h:body>
-        <h1>Photo for album #{album.title}</h1>
         <hr/>
         <h:form>
             <h:panelGrid>
                 <label for="file">Fichier: </label>
-                <h:inputFile id="photoFile" value="#{photoBeans.photoPart}"/>
+                <h:inputFile id="file" value="#{viewAlbumsBeans.photoBeans.files}"/>
                 <h:message for="file" />
             </h:panelGrid>
-            <h:commandButton value="Créer" action="#{photoBeans.create()}"/>
+            <h:commandButton value="Créer" action="#{viewAlbumsBeans.photoBeans.create()}"/>
 
             <h:messages globalOnly="true"/>
         </h:form>

@@ -12,10 +12,13 @@ import fr.uga.miashs.sempic.dao.AlbumFacade;
 import fr.uga.miashs.sempic.entities.Album;
 import fr.uga.miashs.sempic.entities.Photo;
 import fr.uga.miashs.sempic.entities.SempicUser;
+import fr.uga.miashs.sempic.qualifiers.SelectedAlbum;
 import fr.uga.miashs.sempic.qualifiers.SelectedUser;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -38,6 +41,8 @@ public class AlbumBeans implements Serializable {
     private SempicUser selectedUser;
     
     private Album currentAlbum;
+    
+    private List<Photo> photos;
     
     public AlbumBeans() {
         
@@ -91,9 +96,5 @@ public class AlbumBeans implements Serializable {
     
     public String albumDetails(Long albumID) {
         return "album?faces-redirect=true&albumID="+albumID;
-    }
-    
-    public List<Photo> getPhotos() {
-        return null;
     }
 }

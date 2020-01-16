@@ -7,13 +7,16 @@ package fr.uga.miashs.sempic.dao;
 
 import fr.uga.miashs.sempic.SempicException;
 import fr.uga.miashs.sempic.SempicModelException;
+import fr.uga.miashs.sempic.entities.Album;
 import fr.uga.miashs.sempic.entities.Photo;
 import java.io.InputStream;
 import java.nio.file.Paths;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateful;
 import javax.inject.Inject;
+import javax.persistence.Query;
 
 /**
  *
@@ -46,5 +49,17 @@ public class PhotoFacade extends AbstractJpaFacade<Long,Photo>{
         }catch (SempicException e) {
             Logger.getLogger(PhotoFacade.class.getName()).log(Level.INFO, null, e);
         }
+    }
+    
+    public List<Photo> findPhotosOfAlbum(Album album) throws SempicModelException {
+        Query q = getEntityManager().createNamedQuery("findPhotosByAlbum");
+        q.setParameter("album", album);
+        return q.getResultList();
+    }
+    
+    public Photo findPhotoById(Long id) {
+        Query q = getEntityManager().createNamedQuery("findPhotoById");
+        q.setParameter("id", id);
+        return (Photo) q.getSingleResult();
     }
 }

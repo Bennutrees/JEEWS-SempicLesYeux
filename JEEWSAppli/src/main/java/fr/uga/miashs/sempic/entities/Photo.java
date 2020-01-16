@@ -26,7 +26,7 @@ import javax.validation.constraints.NotNull;
 
 @NamedQueries({
     @NamedQuery(
-            name = "findPhotoByAlbum",
+            name = "findPhotosByAlbum",
             query = "SELECT DISTINCT photo FROM Photo photo WHERE photo.album=:album"
     ),
     @NamedQuery(
