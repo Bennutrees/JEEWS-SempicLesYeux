@@ -61,7 +61,7 @@ public class AlbumBeans implements Serializable {
     public List<Album> getAlbumsByOwner(SempicUser user) {
         return this.albumDAO.findByOwner(user);
     }
-
+    
     public void setCurrentAlbum(Album currentAlbum) {
         this.currentAlbum = currentAlbum;
     }
@@ -95,6 +95,10 @@ public class AlbumBeans implements Serializable {
     }
     
     public String albumDetails(Long albumID) {
-        return "album?faces-redirect=true&albumID="+albumID;
+        return "album?faces-redirect=true&albumId="+albumID;
+    }
+    
+    public String newPhoto(Long albumID) {
+        return "create-photo?faces-redirect=true&albumId="+albumID;
     }
 }

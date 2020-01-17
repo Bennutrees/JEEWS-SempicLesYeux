@@ -8,10 +8,13 @@
     <h:head>
     </h:head>
     <h:body>
-        <h:outputText value="#{albumBeans.setCurrentAlbum(param.albumID)}"/>
+        <h:outputText value="#{albumBeans.setCurrentAlbum(sessionTools.selectedAlbum.id)}"/>
         <h1>album #{albumBeans.currentAlbum.title}</h1>
         
-        <h:button outcome="create-photo" value="new photo"/>
+        <h:form style="display:inline-block;">
+            <h:commandButton value="new photo" action="#{albumBeans.newPhoto(albumBeans.currentAlbum.id)}" />
+        </h:form>
+        
         <hr/>
         
         <ul>

@@ -7,14 +7,19 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     
     <h:body>
+        <f:metadata>
+            <f:viewParam name="albumId" value="photoBeans.albumId" />
+        </f:metadata>
+        
+        <h:outputText value="#{photoBeans.setCurrentAlbum(sessionTools.selectedAlbum.id)}"/>
         <hr/>
-        <h:form>
+        <h:form enctype="multipart/form-data">
             <h:panelGrid>
                 <label for="file">Fichier: </label>
-                <h:inputFile id="file" value="#{viewAlbumsBeans.photoBeans.files}"/>
+                <h:inputFile h5:type="file" value="#{photoBeans.image}"/>
                 <h:message for="file" />
             </h:panelGrid>
-            <h:commandButton value="Créer" action="#{viewAlbumsBeans.photoBeans.create()}"/>
+            <h:commandButton value="Créer" action="#{photoBeans.create()}"/>
 
             <h:messages globalOnly="true"/>
         </h:form>

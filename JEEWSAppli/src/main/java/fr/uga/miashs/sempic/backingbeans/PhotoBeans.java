@@ -5,8 +5,10 @@
  */
 package fr.uga.miashs.sempic.backingbeans;
 
+import fr.uga.miashs.sempic.ResourceNotFoundException;
 import fr.uga.miashs.sempic.SempicModelException;
 import fr.uga.miashs.sempic.SempicModelUniqueException;
+import fr.uga.miashs.sempic.dao.AlbumFacade;
 import fr.uga.miashs.sempic.dao.PhotoFacade;
 import fr.uga.miashs.sempic.entities.Album;
 import fr.uga.miashs.sempic.entities.Photo;
@@ -34,14 +36,19 @@ import javax.servlet.http.Part;
 public class PhotoBeans implements Serializable{
     
     @Inject
+    private AlbumFacade albumDAO;
+    
+    @Inject
     private PhotoFacade photoDao;
     @EJB
     private SempicRDFStore rdfStore;
     
-    @Inject
-    @SelectedAlbum
     private Album currentAlbum;
     private List<Part> files;
+    
+    private Part image;
+    
+    private String albumId;
     
     public PhotoBeans(){
     }
@@ -49,6 +56,22 @@ public class PhotoBeans implements Serializable{
     @PostConstruct
     public void init() {
         
+    }
+    
+    public String getAlbumId() {
+        return this.albumId;
+    }
+    
+    public void setAlbumId(String value) {
+        this.albumId = value;
+    }
+    
+    public Part getImage() {
+        return image;
+    }
+    
+    public void setImage(Part image) {
+        this.image = image;
     }
 
     public List<Part> getFiles() {
@@ -67,9 +90,16 @@ public class PhotoBeans implements Serializable{
         this.currentAlbum = currentAlbum;
     }
     
+    public void setCurrentAlbum(Long albumID) throws ResourceNotFoundException {
+        this.currentAlbum = this.albumDAO.readEager(albumID);
+    }
+    
     public String create() throws IOException, SempicModelException {
         if (currentAlbum != null) {
-            boolean allFilesUploaded = true;
+            System.out.println("fr.uga.miashs.sempic.backingbeans.PhotoBeans.create()");
+            System.out.println("fr.uga.miashs.sempic.backingbeans.PhotoBeans.create()");
+            System.out.println("fr.uga.miashs.sempic.backingbeans.PhotoBeans.create()");
+            /*boolean allFilesUploaded = true;
             for (Part file : files) {
                 Photo newPhoto = new Photo();
                 newPhoto.setAlbum(currentAlbum);
@@ -84,11 +114,26 @@ public class PhotoBeans implements Serializable{
                     allFilesUploaded = false;
                 }
             }
-            return allFilesUploaded ? "success" : "failure";
+            return allFilesUploaded ? "success" : "failure";*/
+            Photo photo = new Photo();
+            photo.setAlbum(currentAlbum);
+            if(photoDao == null) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Missing photo Dao"));
+                return "failure";
+            }
+            photoDao.create(photo, image.getInputStream());
+            System.out.println(image.getInputStream());
+            if(rdfStore == null) {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Missing rdf Store"));
+                return "failure";
+            }
+            rdfStore.createPhoto(photo.getId(), currentAlbum.getId(), currentAlbum.getOwner().getId());
+            return "success";
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Missing Album Id"));
             return "failure";
         }
+        
     }
     
     public String delete(Long id) throws SempicModelException  {
