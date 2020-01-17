@@ -97,33 +97,28 @@ public class SempicRDFStore extends BasicSempicRDFStore {
     /*
     Can be simplified
     */
-    public List<Resource> searchPhotos(List<Resource> types, List<Resource> depicts, Resource takenBy, Resource takenIn, List<Resource> restrictionDepicted, long ownerId) {
+    public List<Resource> searchPhotos(List<Resource> Subject, Resource Author, Resource Where, List<Resource> restrictionDepicted) {
         
-        if (depicts==null) depicts=Collections.emptyList();
-        if (types==null) types=Collections.emptyList();
+        if (Subject==null) Subject=Collections.emptyList();
         if (restrictionDepicted==null) restrictionDepicted=Collections.emptyList();
         StringBuilder query = new StringBuilder();
-        query.append("CONSTRUCT {?p a <"+SempicOnto.Photo+">} "
+        query.append("CONSTRUCT {?p a <"+SempicOnto.Picture+">} "
                 + "WHERE {"
-                + "?p a <"+SempicOnto.Photo+"> .");
-                if (takenBy !=null) {
-                    query.append("?p <"+SempicOnto.takenBy+"> <"+takenBy+">.");
+                + "?p a <"+SempicOnto.Picture+"> .");
+                if (Author !=null) {
+                    query.append("?p <"+SempicOnto.Author+"> <"+Author+">.");
                 }
-                if (takenIn !=null) {
-                    query.append("?p <"+SempicOnto.takenIn+"> <"+takenIn+">.");
+                if (Where !=null) {
+                    query.append("?p <"+SempicOnto.Where+"> <"+Where+">.");
                 }
-                types.forEach(t -> {query.append("?p a <"+t+">.");});
                 
-                depicts.forEach(t -> {
+                Subject.forEach(t -> {
                     if (t.isAnon())
-                        query.append("?p <"+SempicOnto.depicts+"> ?d. ?d a <"+t.getPropertyResourceValue(RDF.type)+"> .");
+                        query.append("?p <"+SempicOnto.Subject+"> ?d. ?d a <"+t.getPropertyResourceValue(RDF.type)+"> .");
                     else
-                        query.append("?p <"+SempicOnto.depicts+"> <"+t+"> .");
+                        query.append("?p <"+SempicOnto.Subject+"> <"+t+"> .");
                 });
-                restrictionDepicted.forEach( r -> {query.append("?p <"+SempicOnto.depicts+"> [ <"+r.getPropertyResourceValue(OWL.onProperty)+"> <"+r.getPropertyResourceValue(OWL.hasValue)+">] .");});
-                if (ownerId!=-1) {
-                    query.append("?p <"+SempicOnto.ownerId+"> "+ownerId+" .");
-                }
+                restrictionDepicted.forEach( r -> {query.append("?p <"+SempicOnto.Subject+"> [ <"+r.getPropertyResourceValue(OWL.onProperty)+"> <"+r.getPropertyResourceValue(OWL.hasValue)+">] .");});
                query.append("}");
         //System.out.println(query);  
         return cnx.queryConstruct(query.toString()).listSubjects().toList();
@@ -137,7 +132,7 @@ public class SempicRDFStore extends BasicSempicRDFStore {
      * @param ownerId if not -1 the subject (photo) of the instanciatedProperty has to be owned by the given user
      * @return 
      */
-    public List<Resource> lookupInstances(Resource type, String labelContent, Resource instanciatedProperty, long ownerId) {
+    public List<Resource> lookupInstances(Resource type, String labelContent, Resource instanciatedProperty, String firstname, String lastname) {
         String query = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "
                 + "PREFIX text: <http://jena.apache.org/text#> "
                 + "CONSTRUCT {?s rdfs:label ?l} "
@@ -146,8 +141,9 @@ public class SempicRDFStore extends BasicSempicRDFStore {
                 query+= "?s a <"+type.getURI()+"> .";
         if (instanciatedProperty!=null) {
                 query+= "[ <"+instanciatedProperty.getURI()+"> ?s";
-                if (ownerId != -1) {
-                    query+="; <"+SempicOnto.ownerId+"> "+ownerId;
+                if (firstname != null && lastname != null) {
+                    query+="; <"+SempicOnto.FirstName+"> "+firstname;
+                    query+="; <"+SempicOnto.LastName+"> "+lastname;
                 }
                 query+="] .";
         }
@@ -166,10 +162,10 @@ public class SempicRDFStore extends BasicSempicRDFStore {
     }
     
      public List<Resource> lookupInstances(Resource type, String prefix) {
-         return lookupInstances(type,prefix,null,-1);
+         return lookupInstances(type,prefix,null,null,null);
      }
     
-    public List<Resource> createAnonInstances(Resource type, String prefix, Resource instanciatedProperty, long ownerId) {
+    public List<Resource> createAnonInstances(Resource type, String prefix, Resource instanciatedProperty, String firstname, String lastname) {
         StringBuilder query = new StringBuilder(
                 "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "
                 + "PREFIX text: <http://jena.apache.org/text#> "
@@ -191,8 +187,9 @@ public class SempicRDFStore extends BasicSempicRDFStore {
         if (instanciatedProperty!=null) {
                 query.append("FILTER (EXISTS {[ <").append(instanciatedProperty.getURI()).append("> ?s");
                 
-                if (ownerId != -1) {
-                    query.append("; <"+SempicOnto.ownerId+"> "+ownerId);
+                if (firstname != null && lastname != null) {
+                    query.append("; <"+SempicOnto.FirstName+"> "+firstname);
+                    query.append("; <"+SempicOnto.LastName+"> "+lastname);
                 }
                 query.append("] . ?s a ?c}) .");
                 
@@ -210,14 +207,15 @@ public class SempicRDFStore extends BasicSempicRDFStore {
     }
     
     
-    public List<Resource> getInstanciatedPictureTypes(long ownerId) {
+    public List<Resource> getInstanciatedPictureTypes(String firstname, String lastname) {
         String query = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "
                 + "CONSTRUCT {?s rdfs:label ?l} "
                 + "WHERE {?s rdfs:label ?l . "
-                + "?s rdfs:subClassOf <"+SempicOnto.Photo+"> ."
+                + "?s rdfs:subClassOf <"+SempicOnto.Picture+"> ."
                 + "[ a ?s ";
-        if (ownerId!=-1) {
-            query+="; <"+SempicOnto.ownerId+"> "+ownerId;
+        if (firstname != null && lastname != null) {
+            query+="; <"+SempicOnto.FirstName+"> "+firstname;
+            query+="; <"+SempicOnto.LastName+"> "+lastname;
         }
         query+="] }";
         //System.out.println(query);
@@ -226,21 +224,21 @@ public class SempicRDFStore extends BasicSempicRDFStore {
     }
     
     
-    public List<Resource> getInstancesAndTypes(String prefix, Resource type, Resource instanciatedProperty,long ownerId) {
-        List<Resource> res = this.lookupInstances(type, prefix, instanciatedProperty,ownerId);
-        res.addAll(this.createAnonInstances(type, prefix, instanciatedProperty,ownerId));
+    public List<Resource> getInstancesAndTypes(String prefix, Resource type, Resource instanciatedProperty, String firstname, String lastname) {
+        List<Resource> res = this.lookupInstances(type, prefix, instanciatedProperty, firstname,lastname);
+        res.addAll(this.createAnonInstances(type, prefix, instanciatedProperty,firstname,lastname));
         return res;
     }
     
     public List<Resource> getInstancesAndTypes(String prefix, Resource type) {
-        return getInstancesAndTypes(prefix,type,null,-1);
+        return getInstancesAndTypes(prefix,type,null,null,null);
     }
    
     /*
     return all hasValue property restrictions that can be 
     built from objects of depicts property
     */
-    public List<Resource> getDepictedPropertyRestrictions(String prefix, long ownerId) {
+    public List<Resource> getDepictedPropertyRestrictions(String prefix, String firstname, String lastname) {
         String query = "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>"
                         + "PREFIX text: <http://jena.apache.org/text#> " 
                         + "PREFIX owl: <http://www.w3.org/2002/07/owl#>"
@@ -250,9 +248,10 @@ public class SempicRDFStore extends BasicSempicRDFStore {
                             "  _:x owl:hasValue ?v ." +
                             "  _:x rdfs:label ?l" +
                             " } WHERE {" +
-                            "  [ <"+SempicOnto.depicts+"> ?smt";
-        if (ownerId!=-1) {
-            query+="; <"+SempicOnto.ownerId+"> "+ownerId;
+                            "  [ <"+SempicOnto.Subject+"> ?smt";
+        if (firstname != null && lastname != null) {
+            query+="; <"+SempicOnto.FirstName+"> "+firstname;
+            query+="; <"+SempicOnto.LastName+"> "+lastname;
         }
         query+="].";
                query+=      "  ?smt ?p ?v." +

@@ -20,7 +20,7 @@ public class ExampleRDFStore {
     public static void main(String[] args) {
         BasicSempicRDFStore s = new BasicSempicRDFStore();
 
-        Resource pRes = s.createPhoto(1, 1, 1);
+        Resource pRes = s.createPhoto(1, "Jack", "Rabbit");
 
         
         
@@ -31,7 +31,7 @@ public class ExampleRDFStore {
         
         Resource newAnimal = m.createResource(SempicOnto.Dog);
         newAnimal.addLiteral(RDFS.label, "Medor");
-        m.add(pRes, SempicOnto.depicts, newAnimal);
+        m.add(pRes, SempicOnto.Subject, newAnimal);
         m.write(System.out, "turtle");
 
         s.saveModel(m);
