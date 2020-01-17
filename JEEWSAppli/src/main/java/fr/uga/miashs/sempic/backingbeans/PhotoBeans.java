@@ -105,7 +105,7 @@ public class PhotoBeans implements Serializable{
                 newPhoto.setAlbum(currentAlbum);
                 try {
                     photoDao.create(newPhoto, file.getInputStream());
-                    rdfStore.createPhoto(newPhoto.getId(), currentAlbum.getId(), currentAlbum.getOwner().getId());
+                    rdfStore.createPhoto(newPhoto.getId(), currentAlbum.getOwner().getFirstname(), currentAlbum.getOwner().getLastname());
                 } catch (SempicModelException e) {
                     FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data error"));
                     allFilesUploaded = false;

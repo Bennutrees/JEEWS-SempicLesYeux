@@ -30,14 +30,14 @@ public class BasicSempicRDFStore extends RDFStore {
         prefixes.setNsPrefix("sempic", SempicOnto.NS);
     }
     
-    public Resource createPhoto(long photoId, long albumId, long ownerId) {
+    public Resource createPhoto(long photoId, String ownerFirstname, String ownerLastname) {
         // create an empty RDF graph
         Model m = ModelFactory.createDefaultModel();
         // create an instance of Photo in Model m
-        Resource pRes = m.createResource(Namespaces.getPhotoUri(photoId), SempicOnto.Photo);
-
-        pRes.addLiteral(SempicOnto.albumId, albumId);
-        pRes.addLiteral(SempicOnto.ownerId, ownerId);
+        Resource pRes = m.createResource(Namespaces.getPhotoUri(photoId), SempicOnto.Picture);
+        
+        pRes.addLiteral(SempicOnto.FirstName, ownerFirstname);
+        pRes.addLiteral(SempicOnto.LastName, ownerLastname);        
 
         saveModel(m);
 
@@ -73,7 +73,7 @@ public class BasicSempicRDFStore extends RDFStore {
                         + "OPTIONAL {"
                         + "?photo ?p1 ?o1 ."
                         + "?o1 rdfs:label ?o2 ."
-                        + "FILTER (?p1 IN (<" + SempicOnto.depicts + ">,<" + SempicOnto.takenIn + ">,<" + SempicOnto.takenBy + ">)) "
+                        + "FILTER (?p1 IN (<" + SempicOnto.Subject + ">,<" + SempicOnto.Where + ">,<" + SempicOnto.Author + ">)) "
                         +"}"
                  + "}");
         pss.setIri("photo", pUri);
