@@ -19,6 +19,17 @@
         </session-timeout>
     </session-config>
     
+    <context-param>
+        <param-name>PhotoStorePath</param-name>
+        <param-value>photos</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>ThumbnailStorePath</param-name>
+        <param-value>thumbnail</param-value>
+        
+    </context-param>
+    
     <welcome-file-list>
         <welcome-file>faces/home.xhtml</welcome-file>
     </welcome-file-list>
