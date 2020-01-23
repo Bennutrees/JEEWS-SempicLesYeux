@@ -6,7 +6,8 @@ and open the template in the editor.
 -->
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" 
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <head>
         <title>Page de rechercher des photos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -14,7 +15,25 @@ and open the template in the editor.
     <body>
         <h:form>
             <!-- Tentative récup photo et potentiellement enregistrer dans une liste -->
-            <span>Toutes les photos</span><h:commandButton action="#{search.searchAllPictures}" value="Récupérer toutes les photos"/>
+            <span>Toutes les informations</span><h:commandButton action="#{search.searchAll}" value="Récupérer toutes les photos"/>
         </h:form>
+        <h:form>
+            <!-- Tentative récup photo et potentiellement enregistrer dans une liste -->
+            <span>Toutes les photos</span><h:commandButton action="#{search.SearchAllPictures}" value="Récupérer toutes les photos"/>
+        </h:form>
+        
+        
+        
+        <!--
+        <h:commandButton value="Submit" action="#{otherBean.submit}">
+            <f:param name="foo" value="#{oneBean.foo}" />
+        </h:commandButton>
+         Dans l'autre bean pour récupérer les informations 
+            @ManagedProperty("#{param.foo}")
+            private String foo;-->
+        
+        <c:forEach var="picture" items="#{search.pictures}">
+                <h:outputText value="#{picture.URI}"/><br></br>
+         </c:forEach>
     </body>
 </html>

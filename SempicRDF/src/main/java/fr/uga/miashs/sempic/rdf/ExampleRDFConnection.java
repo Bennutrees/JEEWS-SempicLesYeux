@@ -26,22 +26,18 @@ public class ExampleRDFConnection {
         
         RDFConnection cnx = RDFConnectionFactory.connect(ENDPOINT_QUERY, ENDPOINT_UPDATE, ENDPOINT_GSP);
         //Récupération de toutes les photos
-        QueryExecution qe = cnx.query("SELECT DISTINCT ?s WHERE {?s a  <http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture>}");
+        //QueryExecution qe = cnx.query("SELECT DISTINCT ?s WHERE {?s a  <http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture>}");
         
         //Récupère tout les personnes
-       /* QueryExecution qe = cnx.query("SELECT DISTINCT ?Person ?FirstName ?LastName\n" +
-                                        "  WHERE{\n" +
-                                        "  ?Person a <http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person>.\n" +
-                                        "  ?Person <http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#FirstName> ?FirstName.\n" +
-                                        "  ?Person <http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#LastName> ?LastName\n" +
-                                        "}");*/
+        QueryExecution qe = cnx.query("SELECT distinct ?picture ?title\n" +
+                "  WHERE { ?picture a <http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture>; <http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Title> ?title.}");
         
         ResultSet rs = qe.execSelect();
         while (rs.hasNext()) {
             QuerySolution qs = rs.next();
-            l.add(qs.getResource("s"));
+            l.add(qs.getResource("picture"));
             System.out.println("Le contenu de la liste : "+ l);
-            System.out.println(qs.getResource("s"));
+            System.out.println(qs.getResource("picture"));
         }
 
         cnx.close();     
