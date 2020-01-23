@@ -23,7 +23,7 @@
             <c:forEach var="photo" items="#{sessionTools.selectedAlbum.photos}" varStatus="metadata">
                 <li style="background-color:#{(metadata.odd ? 'grey' : 'white')}; border:1px solid grey">
                     #{photo.title}
-                    <img src="http://localhost:8080/JEEWSAppli/#{photo.picture.getName()}" alt="Smiley face" height="42" width="42"/>
+                    <img src="http://localhost:8080/JEEWSAppli/resources/#{photo.photoName}" alt="Smiley face" height="42" width="42"/>
                     <h:form style="display:inline-block;">
                         <h:button value="Photo Details" outcome="photo">
                             <f:param name="photoId" value="#{photo.id}" />

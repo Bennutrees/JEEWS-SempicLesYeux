@@ -6,10 +6,12 @@
 package fr.uga.miashs.sempic.backingbeans;
 
 import fr.uga.miashs.sempic.ResourceNotFoundException;
+import fr.uga.miashs.sempic.SempicException;
 import fr.uga.miashs.sempic.SempicModelException;
 import fr.uga.miashs.sempic.SempicModelUniqueException;
 import fr.uga.miashs.sempic.dao.AlbumFacade;
 import fr.uga.miashs.sempic.dao.PhotoFacade;
+import fr.uga.miashs.sempic.dao.PhotoStorage;
 import fr.uga.miashs.sempic.entities.Album;
 import fr.uga.miashs.sempic.entities.Photo;
 import fr.uga.miashs.sempic.entities.SempicUser;
@@ -17,9 +19,14 @@ import fr.uga.miashs.sempic.rdf.SempicRDFStore;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.File;
+import java.io.IOException;
 import java.io.Serializable;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Map;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -43,6 +50,9 @@ public class PhotoBeans implements Serializable{
     @Inject
     private PhotoFacade photoDao;
     
+    @Inject
+    private PhotoStorage photoStorage;
+    
     @EJB
     private SempicRDFStore rdfStore;
     
@@ -59,7 +69,12 @@ public class PhotoBeans implements Serializable{
     
     @PostConstruct
     public void init() {
-        photo = new Photo();
+        this.photo = new Photo();
+        try {
+            this.photoStorage = new PhotoStorage(Paths.get(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/")));
+        } catch (IOException ex) {
+            Logger.getLogger(PhotoBeans.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     public String getAlbumId() {
@@ -116,39 +131,33 @@ public class PhotoBeans implements Serializable{
                 return "failure";
             }
             try{
+                
                 InputStream in = image.getInputStream();
-                myPicture = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources")+image.getSubmittedFileName());
-                myPicture.createNewFile();
-                FileOutputStream out = new FileOutputStream(myPicture);
-                byte[] buffer = new byte[1024];
-                int length;
-                while ((length = in.read(buffer))>0){
-                    out.write(buffer, 0, length);
-                }
-                out.close();
+                Path photoPath = Paths.get(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/")+image.getSubmittedFileName());
+                photoStorage.savePicture(photoPath, in);
                 in.close();
+                photo.setAlbum(album);
+                photo.setPhotoName(image.getSubmittedFileName());
+                photoDao.create(photo);
+                /*BasicSempicRDFStore s = new BasicSempicRDFStore();
+                Model m = ModelFactory.createDefaultModel();
 
-                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("path",myPicture.getAbsolutePath());
+                Resource pRest = s.createPhoto(photo.getId(),Long.parseLong(idAlbum),currentUser.getId());
+                s.saveModel(m);*/
+                return "album.xhtml?faces-redirect=true&albumId="+idAlbum;
             }catch(Exception e){
                 e.printStackTrace(System.out);
             }
-            photo.setAlbum(album);
-            photo.setPicture(myPicture);
-            photoDao.create(photo);
-            /*BasicSempicRDFStore s = new BasicSempicRDFStore();
-            Model m = ModelFactory.createDefaultModel();
-
-            Resource pRest = s.createPhoto(photo.getId(),Long.parseLong(idAlbum),currentUser.getId());
-            s.saveModel(m);*/
-            return "album.xhtml?faces-redirect=true&albumId="+idAlbum;
+            
         }
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Album id required on path"));
         return "failure";
     }
     
-    public String delete(Long id) throws SempicModelException  {
+    public String delete(Long id) throws SempicModelException, SempicException  {
         try {
-            photoDao.deleteById(id);
+            this.photoDao.deleteById(id);
+            this.photoStorage.deletePicture(Paths.get(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources/")+this.photo.getPhotoName()));
             //rdfStore.deletePhoto(id);
         } catch (SempicModelUniqueException e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data error"));

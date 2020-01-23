@@ -15,7 +15,7 @@ and open the template in the editor.
         <h:outputText value="#{photoBeans.setAlbumId(sessionTools.selectedAlbum.id)}"/>
         <h1>photo #{photoBeans.photo.title}</h1>
         <hr/>
-        <img src="http://localhost:8080/JEEWSAppli/#{photoBeans.photo.picture.getName()}" alt="Smiley face" height="500" width="500"/>
+        <img src="http://localhost:8080/JEEWSAppli/resources/#{photoBeans.photo.photoName}" alt="Smiley face" height="500" width="500"/>
         
         <h:form>
             <h:commandButton value="Delete photo" action="#{photoBeans.delete(photoBeans.photo.id)}" />

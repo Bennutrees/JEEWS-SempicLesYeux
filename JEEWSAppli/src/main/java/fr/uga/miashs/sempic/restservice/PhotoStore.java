@@ -61,9 +61,7 @@ public class PhotoStore {
     public InputStream getFile(@PathParam("albumId") String albumId, @PathParam("pictureId") String pictureId, @QueryParam("width") String width) throws IOException, SempicException {
         if (width != null &&  !"null".equals(width)) {
             try {
-                int w = Integer.parseInt(width);
-
-                return Files.newInputStream(storage.getThumbnailPath(Paths.get(albumId, pictureId), w));
+                return Files.newInputStream(storage.getPicturePath(Paths.get(albumId, pictureId)));
             } catch (NumberFormatException e) {
                 throw new SempicException("width must be a number: "+width,e);
             }

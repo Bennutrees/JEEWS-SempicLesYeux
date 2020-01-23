@@ -7,6 +7,7 @@ package fr.uga.miashs.sempic.entities;
 
 import java.io.File;
 import java.io.Serializable;
+import java.nio.file.Path;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -53,7 +54,7 @@ public class Photo implements Serializable {
     @NotBlank(message="Vous devez renseigner un titre pour votre photo")
     private String title;
     
-    private File picture;
+    private String photoName;
     
     public long getId() {
         return id;
@@ -67,8 +68,8 @@ public class Photo implements Serializable {
         return title;
     }
     
-    public File getPicture() {
-        return picture;
+    public String getPhotoName() {
+        return this.photoName;
     }
 
     public void setId(long id) {
@@ -83,8 +84,8 @@ public class Photo implements Serializable {
         this.title = title;
     }
     
-    public void setPicture(File picture) {
-        this.picture = picture;
+    public void setPhotoName(String photoName) {
+        this.photoName = photoName;
     }
 
     @Override
