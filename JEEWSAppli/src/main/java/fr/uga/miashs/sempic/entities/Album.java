@@ -6,8 +6,7 @@
 package fr.uga.miashs.sempic.entities;
 
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.List;
+import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -69,7 +68,7 @@ public class Album implements Serializable {
     
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "album", cascade = CascadeType.REMOVE)
     @Column(name = "photos")
-    private List<Photo> photos;
+    private Set<Photo> photos;
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "owner_id")
@@ -91,8 +90,8 @@ public class Album implements Serializable {
         return title;
     }
     
-    public List<Photo> getPhotos() {
-        return Collections.unmodifiableList(photos);
+    public Set<Photo> getPhotos() {
+        return photos;
     }
 
     public SempicUser getOwner() {
@@ -107,7 +106,7 @@ public class Album implements Serializable {
         this.title = title;
     }
     
-    public void setPhotos(List<Photo> photos) {
+    public void setPhotos(Set<Photo> photos) {
         this.photos = photos;
     }
 

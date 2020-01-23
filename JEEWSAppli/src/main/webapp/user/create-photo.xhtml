@@ -14,12 +14,17 @@
         <h:outputText value="#{photoBeans.setCurrentAlbum(sessionTools.selectedAlbum.id)}"/>
         <hr/>
         <h:form enctype="multipart/form-data">
+            <label for="title">Titre de la photo:</label>
+            <h:inputText id="title" value="#{photoBeans.photo.title}"/>
+            <h:message for="title"/>
             <h:panelGrid>
                 <label for="file">Fichier: </label>
                 <h:inputFile h5:type="file" value="#{photoBeans.image}"/>
                 <h:message for="file" />
             </h:panelGrid>
-            <h:commandButton value="Créer" action="#{photoBeans.create()}"/>
+            <h:commandButton value="Créer" action="#{photoBeans.create(sessionTools.connectedUser)}">
+                <f:param name="albumId" value="#{param.albumId}"/>
+            </h:commandButton>
 
             <h:messages globalOnly="true"/>
         </h:form>

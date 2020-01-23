@@ -17,7 +17,6 @@
         <p>Avalaible actions:</p>
         <ul>
             <c:if test="${sessionTools.connectedUser.userType eq 'ADMIN'}">
-                <li><h:button outcome="create-user" value="Create a user"/></li>
                 <li><h:button outcome="list-users" value="List of users"/></li>
             </c:if>
             

@@ -12,12 +12,14 @@ import fr.uga.miashs.sempic.dao.AlbumFacade;
 import fr.uga.miashs.sempic.dao.PhotoFacade;
 import fr.uga.miashs.sempic.entities.Album;
 import fr.uga.miashs.sempic.entities.Photo;
-import fr.uga.miashs.sempic.qualifiers.SelectedAlbum;
-import fr.uga.miashs.sempic.qualifiers.SelectedPhoto;
+import fr.uga.miashs.sempic.entities.SempicUser;
 import fr.uga.miashs.sempic.rdf.SempicRDFStore;
-import java.io.IOException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.File;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
@@ -34,19 +36,21 @@ import javax.servlet.http.Part;
 @Named
 @ViewScoped
 public class PhotoBeans implements Serializable{
-    
+        
     @Inject
     private AlbumFacade albumDAO;
     
     @Inject
     private PhotoFacade photoDao;
+    
     @EJB
     private SempicRDFStore rdfStore;
     
+    private Photo photo;
     private Album currentAlbum;
-    private List<Part> files;
     
     private Part image;
+    private File myPicture;
     
     private String albumId;
     
@@ -55,7 +59,7 @@ public class PhotoBeans implements Serializable{
     
     @PostConstruct
     public void init() {
-        
+        photo = new Photo();
     }
     
     public String getAlbumId() {
@@ -73,15 +77,15 @@ public class PhotoBeans implements Serializable{
     public void setImage(Part image) {
         this.image = image;
     }
-
-    public List<Part> getFiles() {
-        return files;
+    
+    public Photo getPhoto() {
+       return photo;
     }
-
-    public void setFiles(List<Part> files) {
-        this.files = files;
+    
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
     }
-
+   
     public Album getCurrentAlbum() {
         return currentAlbum;
     }
@@ -94,56 +98,62 @@ public class PhotoBeans implements Serializable{
         this.currentAlbum = this.albumDAO.readEager(albumID);
     }
     
-    public String create() throws IOException, SempicModelException {
-        if (currentAlbum != null) {
-            System.out.println("fr.uga.miashs.sempic.backingbeans.PhotoBeans.create()");
-            System.out.println("fr.uga.miashs.sempic.backingbeans.PhotoBeans.create()");
-            System.out.println("fr.uga.miashs.sempic.backingbeans.PhotoBeans.create()");
-            /*boolean allFilesUploaded = true;
-            for (Part file : files) {
-                Photo newPhoto = new Photo();
-                newPhoto.setAlbum(currentAlbum);
-                try {
-                    photoDao.create(newPhoto, file.getInputStream());
-                    rdfStore.createPhoto(newPhoto.getId(), currentAlbum.getOwner().getFirstname(), currentAlbum.getOwner().getLastname());
-                } catch (SempicModelException e) {
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data error"));
-                    allFilesUploaded = false;
-                } catch (IOException e) {
-                    FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Could not upload every photo"));
-                    allFilesUploaded = false;
-                }
-            }
-            return allFilesUploaded ? "success" : "failure";*/
-            Photo photo = new Photo();
-            photo.setAlbum(currentAlbum);
+    public Set<Photo> getPhotoByAlbumId(Long idAlbum) {
+        return this.albumDAO.read(idAlbum).getPhotos();
+    }
+    
+    public String create(SempicUser currentUser) throws SempicModelException{
+        Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String idAlbum = params.get("albumId");
+        Album album = albumDAO.read(Long.parseLong(idAlbum));
+        if(album != null) {
             if(photoDao == null) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Missing photo Dao"));
                 return "failure";
             }
-            photoDao.create(photo, image.getInputStream());
-            System.out.println(image.getInputStream());
             if(rdfStore == null) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Missing rdf Store"));
                 return "failure";
             }
-            rdfStore.createPhoto(photo.getId(), currentAlbum.getOwner().getFirstname(), currentAlbum.getOwner().getLastname());
-            return "success";
-        } else {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Missing Album Id"));
-            return "failure";
+            try{
+                InputStream in = image.getInputStream();
+                myPicture = new File(FacesContext.getCurrentInstance().getExternalContext().getRealPath("/resources")+image.getSubmittedFileName());
+                myPicture.createNewFile();
+                FileOutputStream out = new FileOutputStream(myPicture);
+                byte[] buffer = new byte[1024];
+                int length;
+                while ((length = in.read(buffer))>0){
+                    out.write(buffer, 0, length);
+                }
+                out.close();
+                in.close();
+
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("path",myPicture.getAbsolutePath());
+            }catch(Exception e){
+                e.printStackTrace(System.out);
+            }
+            photo.setAlbum(album);
+            photo.setPicture(myPicture);
+            photoDao.create(photo);
+            /*BasicSempicRDFStore s = new BasicSempicRDFStore();
+            Model m = ModelFactory.createDefaultModel();
+
+            Resource pRest = s.createPhoto(photo.getId(),Long.parseLong(idAlbum),currentUser.getId());
+            s.saveModel(m);*/
+            return "album.xhtml?faces-redirect=true&albumId="+idAlbum;
         }
-        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Album id required on path"));
+        return "failure";
     }
     
     public String delete(Long id) throws SempicModelException  {
         try {
             photoDao.deleteById(id);
-            rdfStore.deletePhoto(id);
+            //rdfStore.deletePhoto(id);
         } catch (SempicModelUniqueException e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Data error"));
             return "failure";
         }
-        return "album?faces-redirect=true";
+        return "album?faces-redirect=true&albumId="+this.albumId;
     }
 }
