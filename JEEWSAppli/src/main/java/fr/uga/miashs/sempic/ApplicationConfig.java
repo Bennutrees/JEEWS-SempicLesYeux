@@ -91,7 +91,7 @@ public class ApplicationConfig {
         admin.setEmail("admin@miashs.fr");
         admin.setUserType(SempicUserType.ADMIN);
         admin.setPasswordHash(passwordHash.generate("admin".toCharArray()));
-
+        System.out.println("coucouc" + admin);
         SempicGroup g = new SempicGroup();
         g.setName("admins");
         g.setOwner(admin);
