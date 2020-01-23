@@ -12,18 +12,33 @@
         <h1>album #{albumBeans.currentAlbum.title}</h1>
         
         <h:form style="display:inline-block;">
-            <h:commandButton value="new photo" action="#{albumBeans.newPhoto(albumBeans.currentAlbum.id)}" />
+            <h:commandButton value="new photo" action="#{albumBeans.newPhoto()}">
+                <f:param name="albumId" value="#{param.albumId}"/>
+            </h:commandButton>
         </h:form>
         
         <hr/>
         
         <ul>
-            
+            <c:forEach var="photo" items="#{sessionTools.selectedAlbum.photos}" varStatus="metadata">
+                <li style="background-color:#{(metadata.odd ? 'grey' : 'white')}; border:1px solid grey">
+                    #{photo.title}
+                    <img src="http://localhost:8080/JEEWSAppli/resources/#{photo.photoName}" alt="Smiley face" height="42" width="42"/>
+                    <h:form style="display:inline-block;">
+                        <h:button value="Photo Details" outcome="photo">
+                            <f:param name="photoId" value="#{photo.id}" />
+                            <f:param name="albumId" value="#{albumBeans.albumId}" />
+                        </h:button>
+                    </h:form>
+                </li>
+            </c:forEach>
         </ul>
         
         
         <h:form>
-            <h:commandButton value="Delete album" action="#{albumBeans.delete(albumBeans.currentAlbum.id)}" />
+            <h:commandButton value="Delete album" action="#{albumBeans.delete()}">
+                <f:param name="albumId" value="#{albumBeans.albumId}" />
+            </h:commandButton>
         </h:form>
         
     </h:body>

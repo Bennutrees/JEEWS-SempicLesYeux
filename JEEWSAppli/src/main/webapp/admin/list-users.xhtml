@@ -48,13 +48,18 @@
                 <h:button value="Create a group" outcome="create-group">
                     <f:param name="userId" value="#{user.id}"/>
                 </h:button>
+                <h:form>
+                    <h:commandButton value="Delete" action="#{userBeans.delete(user, sessionTools.connectedUser)}">
+                        <f:param name="userId" value="#{user.id}"/>
+                    </h:commandButton>
+                </h:form>
             </h:column>
 
 
         </h:dataTable>
 
         <h:link value="Add a new user link"  outcome="create-user"/>
-
+        
 
     </h:body>
 </html>

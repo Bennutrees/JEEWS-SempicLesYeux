@@ -32,15 +32,6 @@ public class PhotoFacade extends AbstractJpaFacade<Long,Photo>{
         super(Photo.class);
     }
     
-    public void create(Photo photo, InputStream donnee) throws SempicModelException {
-        super.create(photo);
-        try {
-            photoStorage.savePicture(Paths.get(String.valueOf(photo.getAlbum().getId()), String.valueOf(photo.getId())), donnee);
-        } catch (SempicException e) {
-            throw new SempicModelException("Photo could not be uploaded");
-        }
-    }
-    
     @Override
     public void delete(Photo photo) throws SempicModelException {
         super.delete(photo);

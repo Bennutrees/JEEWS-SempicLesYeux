@@ -10,17 +10,12 @@ import fr.uga.miashs.sempic.SempicModelUniqueException;
 import fr.uga.miashs.sempic.dao.SempicUserFacade;
 import fr.uga.miashs.sempic.entities.SempicUser;
 import java.io.Serializable;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.RequestScoped;
-import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
 import javax.validation.constraints.NotBlank;
 
 /**
@@ -44,7 +39,6 @@ public class UserBeans implements Serializable {
         current=new SempicUser();
     }
 
-
     public SempicUser getCurrent() {
         return current;
     }
@@ -57,18 +51,11 @@ public class UserBeans implements Serializable {
         return null;
     }
     
-    
     public void setPassword(@NotBlank(message="Password is required") String password) {
         getCurrent().setPassword(password);
     }
     
-    /*public String generateHash(String s) {
-        return hashAlgo.generate(s.toCharArray());
-    }*/
-    
     public String create() {
-        //System.out.println(current);
-        
         try {
             userDao.create(current);
         } 
@@ -78,19 +65,23 @@ public class UserBeans implements Serializable {
         }
         catch (SempicModelException e) {
            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
-            return "failure";
+           return "failure";
         }
-        
         return "success";
     }
     
-    public String delete(Long userID) throws SempicModelException {
+    public void delete(SempicUser user, SempicUser currentUser) {
         try {
-            userDao.deleteById(userID);
+                if(currentUser.getId() != user.getId()){
+                userDao.delete(user);
+            }
+            else{
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Vous ne pouvez pas vous supprimer vous même"));
+            }
         } catch (SempicModelUniqueException e) {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
-            return "failure";
+        } catch (SempicModelException e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
         }
-        return "success";
     }
 }

@@ -12,13 +12,11 @@ import fr.uga.miashs.sempic.dao.AlbumFacade;
 import fr.uga.miashs.sempic.entities.Album;
 import fr.uga.miashs.sempic.entities.Photo;
 import fr.uga.miashs.sempic.entities.SempicUser;
-import fr.uga.miashs.sempic.qualifiers.SelectedAlbum;
 import fr.uga.miashs.sempic.qualifiers.SelectedUser;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.faces.view.ViewScoped;
@@ -44,6 +42,8 @@ public class AlbumBeans implements Serializable {
     
     private List<Photo> photos;
     
+    private Long albumId;
+    
     public AlbumBeans() {
         
     }
@@ -62,12 +62,22 @@ public class AlbumBeans implements Serializable {
         return this.albumDAO.findByOwner(user);
     }
     
+    public List<Photo> getPhotos() {
+        return this.photos;
+    }
+    
+    public Long getAlbumId() {
+        return this.albumId;
+    }
+    
     public void setCurrentAlbum(Album currentAlbum) {
+        this.albumId = currentAlbum.getId();
         this.currentAlbum = currentAlbum;
     }
     
     public void setCurrentAlbum(Long albumID) throws ResourceNotFoundException {
         this.currentAlbum = albumDAO.readEager(albumID);
+        this.albumId = albumID;
     }
     
     public String create() {        
@@ -75,7 +85,7 @@ public class AlbumBeans implements Serializable {
             albumDAO.create(currentAlbum);
         } 
         catch (SempicModelUniqueException ex) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("un utilisateur avec cette adresse mail existe déjà"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Création de l'album impossible"));
             return "failure";
         }
         catch (SempicModelException ex) {
@@ -85,9 +95,10 @@ public class AlbumBeans implements Serializable {
         return "success";
     }
     
-    public String delete(Long albumID) throws SempicModelException {
+    public String delete() throws SempicModelException {
         try {
-            albumDAO.deleteById(albumID);
+            albumDAO.delete(this.currentAlbum);
+            
         } catch (SempicModelUniqueException e) {
             return "failure";
         }
@@ -98,7 +109,9 @@ public class AlbumBeans implements Serializable {
         return "album?faces-redirect=true&albumId="+albumID;
     }
     
-    public String newPhoto(Long albumID) {
-        return "create-photo?faces-redirect=true&albumId="+albumID;
+    public String newPhoto() {
+        Map<String,String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        String albumId = params.get("albumId");
+        return "create-photo?faces-redirect=true&albumId="+albumId;
     }
 }

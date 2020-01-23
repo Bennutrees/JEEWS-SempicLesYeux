@@ -5,7 +5,9 @@
  */
 package fr.uga.miashs.sempic.entities;
 
+import java.io.File;
 import java.io.Serializable;
+import java.nio.file.Path;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -17,6 +19,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -48,6 +51,11 @@ public class Photo implements Serializable {
     @NotNull
     private Album album;
     
+    @NotBlank(message="Vous devez renseigner un titre pour votre photo")
+    private String title;
+    
+    private String photoName;
+    
     public long getId() {
         return id;
     }
@@ -56,12 +64,28 @@ public class Photo implements Serializable {
         return album;
     }
     
+    public String getTitle() {
+        return title;
+    }
+    
+    public String getPhotoName() {
+        return this.photoName;
+    }
+
     public void setId(long id) {
         this.id = id;
     }
 
     public void setAlbum(Album album) {
         this.album = album;
+    }
+    
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    
+    public void setPhotoName(String photoName) {
+        this.photoName = photoName;
     }
 
     @Override
@@ -88,7 +112,4 @@ public class Photo implements Serializable {
         }
         return true;
     }
-    
-    
-    
 }

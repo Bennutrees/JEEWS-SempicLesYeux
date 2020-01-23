@@ -15,13 +15,13 @@
         <h3>My albums list</h3>
         <ul>
             <c:forEach var="album" items="${albumBeans.getAlbumsByOwner(sessionTools.connectedUser)}" varStatus="metadata">
-            <li style="background-color:#{(metadata.odd ? 'grey' : 'white')}; border:1px solid grey">
-                #{album.title}
-                <h:form style="display:inline-block;">
-                    <h:commandButton value="See" action="#{albumBeans.albumDetails(album.id)}" />
-                </h:form>
-            </li>
-        </c:forEach>
+                <li style="background-color:#{(metadata.odd ? 'grey' : 'white')}; border:1px solid grey">
+                    #{album.title}
+                    <h:form style="display:inline-block;">
+                        <h:commandButton value="See" action="#{albumBeans.albumDetails(album.id)}" />
+                    </h:form>
+                </li>
+            </c:forEach>
         </ul>
     </h:body>
 </html>

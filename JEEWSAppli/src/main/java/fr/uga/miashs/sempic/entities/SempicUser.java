@@ -85,7 +85,7 @@ public class SempicUser implements Serializable {
     @Column(columnDefinition="VARCHAR(5)")
     private SempicUserType userType;
     
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "owner")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "owner", cascade = CascadeType.REMOVE)
     @Column(name = "albums")
     private List<Album> albums;
 

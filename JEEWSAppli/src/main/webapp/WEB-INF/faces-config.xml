@@ -19,16 +19,6 @@
     -->
     
     <navigation-rule>
-        <description>Create user page</description>
-        <from-view-id>*</from-view-id>
-        <navigation-case>
-            <from-outcome>create-user</from-outcome>
-            <to-view-id>create-user.xhtml</to-view-id>
-            <redirect/>
-        </navigation-case>
-    </navigation-rule>
-    
-    <navigation-rule>
         <description>Create group page</description>
         <from-view-id>*</from-view-id>
         <navigation-case>
@@ -60,6 +50,33 @@
     </navigation-rule>
     
     <navigation-rule>
+        <description>Group creation action result</description>
+        <from-view-id>/user/create-group.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{groupBeans.create()}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/home.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{groupBeans.create()}</from-action>
+            <from-outcome>failure</from-outcome>
+            <to-view-id>#{view.viewId}</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <!-- ******************** User ******************** -->
+    <navigation-rule>
+        <description>Create user page</description>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>create-user</from-outcome>
+            <to-view-id>create-user.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
         <description>User creation action result</description>
         <from-view-id>*</from-view-id>
         <navigation-case>
@@ -76,18 +93,17 @@
     </navigation-rule>
     
     <navigation-rule>
-        <description>Group creation action result</description>
-        <from-view-id>/user/create-group.xhtml</from-view-id>
+        <description>user Delete action result</description>
+        <from-view-id>list-users.xhtml</from-view-id>
         <navigation-case>
-            <from-action>#{groupBeans.create()}</from-action>
-            <from-outcome>success</from-outcome>
-            <to-view-id>/home.xhtml</to-view-id>
+            <from-action>#{userBeans.delete(user)}</from-action>
+            <to-view-id>/admin/list-user.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
         <navigation-case>
-            <from-action>#{groupBeans.create()}</from-action>
+            <from-action>#{userBeans.delete(user)}</from-action>
             <from-outcome>failure</from-outcome>
-            <to-view-id>#{view.viewId}</to-view-id>
+            <to-view-id>/admin/list-users.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     
@@ -115,9 +131,9 @@
     
     <navigation-rule>
         <description>create album page</description>
-        <from-view-id>user/albums.xhtml</from-view-id>
+        <from-view-id>user/main-page.xhtml</from-view-id>
         <navigation-case>
-            <from-outcome>create-albums</from-outcome>
+            <from-outcome>create-album</from-outcome>
             <to-view-id>user/create-album.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
@@ -138,20 +154,14 @@
             <to-view-id>/user/create-album.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-    
+
     <navigation-rule>
-        <description>Album delete action result</description>
-        <from-view-id>*</from-view-id>
+        <description>User album page</description>
+        <from-view-id>user/album.xhtml</from-view-id>
         <navigation-case>
-            <from-action>#{albumBeans.delete(Long)}</from-action>
-            <from-outcome>success</from-outcome>
-            <to-view-id>/user/main-page.xhtml</to-view-id>
+            <from-action>#{photoBeans.photoDetails()}</from-action>
+            <to-view-id>user/photo.xhtml</to-view-id>
             <redirect/>
-        </navigation-case>
-        <navigation-case>
-            <from-action>#{albumBeans.delete(Long)}</from-action>
-            <from-outcome>failure</from-outcome>
-            <to-view-id>/user/album.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>

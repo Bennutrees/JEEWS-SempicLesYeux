@@ -174,7 +174,7 @@ public class SessionTools implements Serializable {
     @Dependent
     @Named
     public Photo getSelectedPhoto() throws SempicException {
-        String photoId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("albumId");
+        String photoId = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("photoId");
         if (photoId != null) {
             try {
                 long photoLongId = Long.parseLong(photoId);
