@@ -1,0 +1,1228 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#"
+     xml:base="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:projetOntology="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Author -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Author">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Colleague -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Colleague">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Job"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Event -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Event">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Event"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Friend -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Friend">
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#SymmetricProperty"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Is_in_the_Country -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Is_in_the_Country">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Region"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Country"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Is_in_the_city -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Is_in_the_city">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#has_the_Domicile"/>
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Domicile"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#City"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Is_in_the_region -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Is_in_the_region">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#City"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Region"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Lives -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Lives">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Place"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Location -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Location">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Place"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Event"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Owner -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Owner">
+        <owl:inverseOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Pet"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Pet -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Pet">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Animal"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Subject -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Subject">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Animal"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Event"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Landscape"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Objects"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Place"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Taken_By -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Taken_By">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Device"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Where -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Where">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Place"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Who -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Who">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Works -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Works">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Job"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#hasBrother -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#hasBrother">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Male"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#hasFather -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#hasFather">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#hasParent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#hasMother -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#hasMother">
+        <rdfs:subPropertyOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#hasParent"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#hasParent -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#hasParent">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#hasSister -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#hasSister">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Female"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#has_the_Domicile -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#has_the_Domicile">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#City"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Domicile"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#has_the_city -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#has_the_city">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Region"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#City"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#has_the_region -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#has_the_region">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Country"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Region"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Adress -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Adress">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Domicile"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#CityName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#CityName"/>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Date -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Date">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>  
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#EventName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#EventName">
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#FirstName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#FirstName">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#LastName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#LastName">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#LocationName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#LocationName">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Place"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#OWLDataProperty_62db6741_20a5_4b36_b755_b75ae19557e4 -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#OWLDataProperty_62db6741_20a5_4b36_b755_b75ae19557e4">
+        <rdfs:label xml:lang="fr">CityNameEn</rdfs:label>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#ObjectName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#ObjectName"/>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#PetName -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#PetName">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Animal"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Title -->
+
+    <owl:DatatypeProperty rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Title">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture"/>
+        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    </owl:DatatypeProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Animal -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Animal"/>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Art -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Art">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Objects"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Beach -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Beach">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Landscape"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Desert"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Forest"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Mountain"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Camera -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Camera">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Device"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Cat -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Cat">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Animal"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#City -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#City">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Place"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Country -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Country">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Place"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Cultural -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Cultural">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Desert -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Desert">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Landscape"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Forest"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Mountain"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Developper -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Developper">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Job"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Device -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Device"/>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Dog -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Dog">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Animal"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Domicile -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Domicile">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Place"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Evenings_with_Friends -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Evenings_with_Friends">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Party"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Event -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Event"/>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Farewell -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Farewell">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Party"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Female -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Female">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Florist -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Florist">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Job"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Forest -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Forest">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Landscape"/>
+        <owl:disjointWith rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Mountain"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Holidays -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Holidays">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Horse -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Horse">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Animal"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#House_Warming -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#House_Warming">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Party"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Iphone -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Iphone">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Phone"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Job -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Job"/>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Landscape -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Landscape"/>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Male -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Male">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Monuments -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Monuments">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Objects"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Mountain -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Mountain">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Landscape"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Musical -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Musical">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Cultural"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Objects -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Objects"/>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Party -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Party">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Event"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person"/>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Phone -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Phone">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Device"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Photographer -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Photographer">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Job"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture"/>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Place -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Place"/>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Region -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Region">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Place"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Samsung -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Samsung">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Phone"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Teacher -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Teacher">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Job"/>
+    </owl:Class>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Vehicule -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Vehicule">
+        <rdfs:subClassOf rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Objects"/>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Adem_GURBUZ -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Adem_GURBUZ">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Male"/>
+        <Colleague rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Edouard_DELATTRE"/>
+        <Friend rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Edouard_DELATTRE"/>
+        <Lives rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Grenoble"/>
+        <Works rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Adem_Job"/>
+        <FirstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Adem</FirstName>
+        <LastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">GURBUZ</LastName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Adem_Job -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Adem_Job">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Developper"/>
+        <Colleague rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Edouard_DELATTRE"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Allemagne -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Allemagne">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Country"/>
+        <has_the_region rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Land_Berlin"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Annie_Job -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Annie_Job">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Photographer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Annie_Leibovitz -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Annie_Leibovitz">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Female"/>
+        <Works rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Annie_Job"/>
+        <FirstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Annie</FirstName>
+        <LastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Leibovitz</LastName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Berck -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Berck">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Beach"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#City"/>
+        <Is_in_the_region rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Nord_de_France"/>
+        <CityName>Berck</CityName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Berlin -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Berlin">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#City"/>
+        <Is_in_the_region rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Land_Berlin"/>
+        <CityName>Berlin</CityName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Camera -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Camera">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Camera"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Camille_DELATTRE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Camille_DELATTRE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Female"/>
+        <hasBrother rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Edouard_DELATTRE"/>
+        <hasBrother rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Etienne_DELATTRE"/>
+        <FirstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Camille</FirstName>
+        <LastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DELATTRE</LastName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Christmas -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Christmas">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Holidays"/>
+        <EventName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Christmas</EventName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Edouard_DELATTRE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Edouard_DELATTRE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Male"/>
+        <Colleague rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Adem_GURBUZ"/>
+        <Friend rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Adem_GURBUZ"/>
+        <Lives rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Grenoble"/>
+        <Lives rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Colloc_D&apos;assaut"/>
+        <Works rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Edouard_Job"/>
+        <hasBrother rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Etienne_DELATTRE"/>
+        <hasFather rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Eric_DELATTRE"/>
+        <hasMother rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Isabelle_BEAUGRAND"/>
+        <hasSister rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Camille_DELATTRE"/>
+        <FirstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Edouard</FirstName>
+        <LastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DELATTRE</LastName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Edouard_Job -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Edouard_Job">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Developper"/>
+        <Works rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Adem_GURBUZ"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Eric_DELATTRE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Eric_DELATTRE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Male"/>
+        <FirstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Eric</FirstName>
+        <LastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DELATTRE</LastName>
+    </owl:NamedIndividual>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NegativePropertyAssertion"/>
+        <owl:sourceIndividual rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Eric_DELATTRE"/>
+        <owl:assertionProperty rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Pet"/>
+        <owl:targetIndividual rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Urko"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Eric_Home -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Eric_Home">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Domicile"/>
+        <Adress>96 Rue des Rosiers</Adress>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Etienne_DELATTRE -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Etienne_DELATTRE">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Male"/>
+        <hasBrother rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Edouard_DELATTRE"/>
+        <hasSister rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Camille_DELATTRE"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Fin_de_semestre -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Fin_de_semestre">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Farewell"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#France -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#France">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Country"/>
+        <has_the_region rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Isere"/>
+        <has_the_region rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Loire-Atlantique"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Grenoble -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Grenoble">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#City"/>
+        <Is_in_the_Country rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#France"/>
+        <Is_in_the_region rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Isere"/>
+        <has_the_Domicile rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Colloc_D&apos;assaut"/>
+        <CityName>Grenoble</CityName>
+        <OWLDataProperty_62db6741_20a5_4b36_b755_b75ae19557e4>Grenoble</OWLDataProperty_62db6741_20a5_4b36_b755_b75ae19557e4>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Hellfest -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Hellfest">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Musical"/>
+        <EventName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hellfest</EventName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Iphone_X -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Iphone_X">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Iphone"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Isabelle_BEAUGRAND -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Isabelle_BEAUGRAND">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Female"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Isere -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Isere">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Region"/>
+        <Is_in_the_Country rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#France"/>
+        <has_the_city rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Grenoble"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Jerome_DAVID -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Jerome_DAVID">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Male"/>
+        <Colleague rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Manuel_ATENCIA"/>
+        <Friend rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Manuel_ATENCIA"/>
+        <Works rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Jerome_Job"/>
+        <FirstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jerome</FirstName>
+        <LastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">DAVID</LastName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Jerome_Job -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Jerome_Job">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Developper"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Land_Berlin -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Land_Berlin">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Region"/>
+        <Is_in_the_Country rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Allemagne"/>
+        <has_the_city rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Berlin"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Le_mur_de_Berlin -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Le_mur_de_Berlin">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Monuments"/>
+        <ObjectName>Le mur de Berlin</ObjectName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Loire-Atlantique -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Loire-Atlantique">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Region"/>
+        <Is_in_the_Country rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#France"/>
+        <Location rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Hellfest"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Manuel_ATENCIA -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Manuel_ATENCIA">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Male"/>
+        <Colleague rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Jerome_DAVID"/>
+        <Friend rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Jerome_DAVID"/>
+        <Works rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Manuel_Job"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Manuel_Job -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Manuel_Job">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Developper"/>
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Teacher"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Mont_blanc -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Mont_blanc">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Mountain"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Nord_de_France -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Nord_de_France">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Region"/>
+        <Is_in_the_Country rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#France"/>
+        <has_the_city rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Berck"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture1 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture1">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture"/>
+        <Author rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Edouard_DELATTRE"/>
+        <Event rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Hellfest"/>
+        <Subject rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Manuel_ATENCIA"/>
+        <Taken_By rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Samsung_J7"/>
+        <Where rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Loire-Atlantique"/>
+        <Who rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Manuel_ATENCIA"/>
+        <Date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1997-06-06T00:00:01+00:00</Date>
+        <Title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Arrivé au hellfest</Title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture10 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture10">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture"/>
+        <Author rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Annie_Leibovitz"/>
+        <Event rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Trip_to_Australia"/>
+        <Taken_By rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Camera"/>
+        <Where rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Colloc_D&apos;assaut"/>
+        <Who rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Camille_DELATTRE"/>
+        <Who rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Edouard_DELATTRE"/>
+        <Who rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Eric_DELATTRE"/>
+        <Who rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Isabelle_BEAUGRAND"/>
+        <Date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2002-01-11T00:00:01+00:00</Date>
+        <Title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Photo de Famille</Title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture11 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture11">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture"/>
+        <Author rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Annie_Leibovitz"/>
+        <Taken_By rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Camera"/>
+        <Where rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Colloc_D&apos;assaut"/>
+        <Who rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Camille_DELATTRE"/>
+        <Who rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Edouard_DELATTRE"/>
+        <Who rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Eric_DELATTRE"/>
+        <Who rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Etienne_DELATTRE"/>
+        <Date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime" >2015-06-15T00:00:01+00:00</Date>
+        <Title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Photo de famille</Title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture"/>
+        <Author rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Annie_Leibovitz"/>
+        <Event rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Fin_de_semestre"/>
+        <Subject rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Fin_de_semestre"/>
+        <Taken_By rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Iphone_X"/>
+        <Where rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Grenoble"/>
+        <Who rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Adem_GURBUZ"/>
+        <Who rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Edouard_DELATTRE"/>
+        <Date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2020-05-16T00:00:01+00:00</Date>
+        <Title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Séparation pour le stage :(</Title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture"/>
+        <Author rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Edouard_DELATTRE"/>
+        <Event rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Christmas"/>
+        <Subject rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Urko"/>
+        <Taken_By rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Camera"/>
+        <Where rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Eric_Home"/>
+        <Who rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Eric_DELATTRE"/>
+        <Date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-12-24T00:00:01+00:00</Date>
+        <Title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cadeau Eric</Title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture4 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture4">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture"/>
+        <Author rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Adem_GURBUZ"/>
+        <Event rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Hellfest"/>
+        <Subject rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Adem_GURBUZ"/>
+        <Taken_By rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Samsung_J7"/>
+        <Where rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Colloc_D&apos;assaut"/>
+        <Who rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Adem_GURBUZ"/>
+        <Date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2019-01-01T00:00:01+00:00</Date>
+        <Title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Selfie Adem</Title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture5 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture5">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture"/>
+        <Author rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Annie_Leibovitz"/>
+        <Subject rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Le_mur_de_Berlin"/>
+        <Taken_By rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Iphone_X"/>
+        <Where rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Allemagne"/>
+        <Who rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Camille_DELATTRE"/>
+        <Who rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Etienne_DELATTRE"/>
+        <Date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2014-02-11T00:00:01+00:00</Date>
+        <Title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Superbes vacances</Title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture6 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture6">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture"/>
+        <Author rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Etienne_DELATTRE"/>
+        <Event rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Rock_en_Seine"/>
+        <Subject rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Rock_en_Seine"/>
+        <Taken_By rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Camera"/>
+        <Where rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Berck"/>
+        <Who rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Adem_GURBUZ"/>
+        <Who rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Annie_Leibovitz"/>
+        <Who rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Etienne_DELATTRE"/>
+        <Date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1999-02-24T00:00:01+00:00</Date>
+        <Title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Dunno</Title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture"/>
+        <Author rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Robert_Doisnau"/>
+        <Subject rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Le_mur_de_Berlin"/>
+        <Taken_By rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Camera"/>
+        <Where rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Berlin"/>
+        <Date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">1961-07-13T00:00:01+00:00</Date>
+        <Title rdf:datatype="http://www.w3.org/2001/XMLSchema#string">La congoléxicomatisation des lois du marché</Title>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture_8 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture_8">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture"/>
+        <Author rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Camille_DELATTRE"/>
+        <Event rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Trip_to_Australia"/>
+        <Subject rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Camille_DELATTRE"/>
+        <Who rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Camille_DELATTRE"/>
+        <Date rdf:datatype="http://www.w3.org/2001/XMLSchema#dateTime">2005-03-16T00:00:01+00:00</Date>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Robert_Doisnau -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Robert_Doisnau">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Male"/>
+        <Works rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Robert_Job"/>
+        <FirstName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Robert</FirstName>
+        <LastName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Doisnau</LastName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Robert_Job -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Robert_Job">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Photographer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Rock_en_Seine -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Rock_en_Seine">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Musical"/>
+        <EventName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rock en Seine</EventName>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Samsung_J7 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Samsung_J7">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Samsung"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Trip_to_Australia -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Trip_to_Australia">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Event"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Urko -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Urko">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Dog"/>
+        <PetName rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Urko</PetName>
+    </owl:NamedIndividual>
+    <rdf:Description>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NegativePropertyAssertion"/>
+        <owl:sourceIndividual rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Urko"/>
+        <owl:assertionProperty rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Owner"/>
+        <owl:targetIndividual rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Eric_DELATTRE"/>
+    </rdf:Description>
+    
+
+
+    <!-- http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Colloc_D&apos;assaut -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Colloc_D&apos;assaut">
+        <rdf:type rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Domicile"/>
+        <Is_in_the_city rdf:resource="http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Grenoble"/>
+        <Adress>1 Rue de l&apos;oisans</Adress>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi -->
+

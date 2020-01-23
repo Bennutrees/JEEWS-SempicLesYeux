@@ -31,12 +31,12 @@ import javax.security.enterprise.identitystore.Pbkdf2PasswordHash;
         // HSQL
         //url="jdbc:hsqldb:mem:hsqldb", // memory database that is deleted when the server is stopped
         
-        //className = "org.hsqldb.jdbcDriver",
-        //url = "jdbc:hsqldb:file:sempicdb",
-        //databaseName = "SempicDB",
+        className = "org.hsqldb.jdbcDriver",
+        url = "jdbc:hsqldb:file:sempicdb",
+        databaseName = "SempicDB",
         
-        className="com.mysql.cj.jdbc.Driver",
-        url = "jdbc:mysql://localhost/SempicDB",
+        //className="com.mysql.cj.jdbc.Driver",
+        //url = "jdbc:mysql://localhost/SempicDB",
         
         user = "sempic",
         password = "sempic"

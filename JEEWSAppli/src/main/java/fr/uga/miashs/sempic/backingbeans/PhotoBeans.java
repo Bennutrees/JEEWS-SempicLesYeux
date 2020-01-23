@@ -127,7 +127,7 @@ public class PhotoBeans implements Serializable{
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Missing rdf Store"));
                 return "failure";
             }
-            rdfStore.createPhoto(photo.getId(), currentAlbum.getOwner().getFirstname(), currentAlbum.getOwner().getLastname());
+            //rdfStore.createPhoto(photo.getId(), currentAlbum.getOwner().getFirstname(), currentAlbum.getOwner().getLastname());
             return "success";
         } else {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Missing Album Id"));

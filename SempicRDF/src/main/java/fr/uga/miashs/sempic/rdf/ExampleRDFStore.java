@@ -30,11 +30,15 @@ public class ExampleRDFStore {
         
         
         Resource newAnimal = m.createResource(SempicOnto.Dog);
-        newAnimal.addLiteral(RDFS.label, "Medor");
+        //Resource Jerome = m.getResource(resultatSelectPersonnes)
+        //newAnimal.addLiteral(RDFS.label, "Medor");
         m.add(pRes, SempicOnto.Subject, newAnimal);
         m.write(System.out, "turtle");
 
         s.saveModel(m);
+        
+        
+        
         
         //s.deleteModel(m);
         //s.cnx.load(m);

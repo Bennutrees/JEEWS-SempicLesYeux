@@ -65,7 +65,7 @@
                             <mainClass>jena.schemagen</mainClass>
                             <commandlineArgs>
                                 --inference \
-                                -i "${basedir}/src/main/resources/ProjetOntology.owl" \
+                                -i "${basedir}/src/main/resources/sempiconto.owl" \
                                 -e RDF/XML \
                                 --package fr.uga.miashs.sempic.model.rdf \
                                 -o "${project.build.directory}/generated-sources/java" \

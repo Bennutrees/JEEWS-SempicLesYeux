@@ -9,6 +9,7 @@ package fr.uga.miashs.sempic.rdf;
  *
  * @author Jerome David <jerome.david@univ-grenoble-alpes.fr>
  */
+import java.util.ArrayList;
 import org.apache.jena.query.*;
 import org.apache.jena.rdfconnection.*;
 
@@ -21,12 +22,25 @@ public class ExampleRDFConnection {
     
     public static void main(String[] args) {
         
-        RDFConnection cnx = RDFConnectionFactory.connect(ENDPOINT_QUERY, ENDPOINT_UPDATE, ENDPOINT_GSP);
+        ArrayList l = new ArrayList();
         
-        QueryExecution qe = cnx.query("SELECT DISTINCT ?s WHERE {?s ?p ?o}");
+        RDFConnection cnx = RDFConnectionFactory.connect(ENDPOINT_QUERY, ENDPOINT_UPDATE, ENDPOINT_GSP);
+        //Récupération de toutes les photos
+        QueryExecution qe = cnx.query("SELECT DISTINCT ?s WHERE {?s a  <http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture>}");
+        
+        //Récupère tout les personnes
+       /* QueryExecution qe = cnx.query("SELECT DISTINCT ?Person ?FirstName ?LastName\n" +
+                                        "  WHERE{\n" +
+                                        "  ?Person a <http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Person>.\n" +
+                                        "  ?Person <http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#FirstName> ?FirstName.\n" +
+                                        "  ?Person <http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#LastName> ?LastName\n" +
+                                        "}");*/
+        
         ResultSet rs = qe.execSelect();
         while (rs.hasNext()) {
             QuerySolution qs = rs.next();
+            l.add(qs.getResource("s"));
+            System.out.println("Le contenu de la liste : "+ l);
             System.out.println(qs.getResource("s"));
         }
 

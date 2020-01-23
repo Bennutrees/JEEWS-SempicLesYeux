@@ -104,6 +104,16 @@
     </navigation-rule>
     
     <navigation-rule>
+        <description>User search page</description>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>search</from-outcome>
+            <to-view-id>user/search.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
         <description>create album page</description>
         <from-view-id>user/albums.xhtml</from-view-id>
         <navigation-case>
