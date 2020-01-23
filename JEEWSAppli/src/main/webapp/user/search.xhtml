@@ -14,13 +14,44 @@ and open the template in the editor.
     </head>
     <body>
         <h:form>
-            <!-- Tentative récup photo et potentiellement enregistrer dans une liste -->
-            <span>Toutes les informations</span><h:commandButton action="#{search.searchAll}" value="Récupérer toutes les photos"/>
+            <span>Toutes les informations</span><h:commandButton action="#{search.searchAll}" value="Récupérer tout les items stockées"/>
         </h:form>
         <h:form>
-            <!-- Tentative récup photo et potentiellement enregistrer dans une liste -->
             <span>Toutes les photos</span><h:commandButton action="#{search.SearchAllPictures}" value="Récupérer toutes les photos"/>
         </h:form>
+        <h:form>
+            <span>Tout les selfies</span><h:commandButton action="#{search.SearchSelfies}" value="Récupérer tout les selfies"/>
+        </h:form>
+        <h:form>
+            <span>Toutes les photos de gens seuls</span><h:commandButton action="#{search.SearchPictureAlone}" value="Récupérer toutes les photos où une seul personne figure"/>
+        </h:form>
+        <h:form>
+            <span>Toutes les photos de groupe</span><h:commandButton action="#{search.SearchPictureGroup}" value="Récupérer toutes les photos de groupe"/>
+        </h:form>
+        <h:form>
+            <span>Toutes les photos d'amis</span><h:commandButton action="#{search.SearchPictureFriend}" value="Récupérer toutes les photos entres amis"/>
+        </h:form>
+        <h:form>
+            <span>Toutes les photos entre collègues</span><h:commandButton action="#{search.SearchPictureColleague}" value="Récupérer toutes les photos entres collègues"/>
+        </h:form>
+        <h:form>
+            <span>Toutes les photos entre collègues et amis</span><h:commandButton action="#{search.SearchPictureColleagueAndFriend}" value="Récupérer toutes les photos entre collègues et amis"/>
+        </h:form>
+        <h:form>
+            <span>Toutes les photos d'artiste</span><h:commandButton action="#{search.SearchPictureArtiste}" value="Récupérer toutes les photos d'artiste"/>
+        </h:form>
+        <h:form>
+            <span>Toutes les photos de frère et soeur </span><h:commandButton action="#{search.SearchPictureBrotherOrSister}" value="Récupérer toutes les photos de frère et soeur"/>
+        </h:form>
+        <h:form>
+            <span>Toutes les photos prise par un appareil photo </span><h:commandButton action="#{search.SearchPictureCamera}" value="Récupérer toutes les photos prise par un appareil photo"/>
+        </h:form>
+        <h:form>
+            <span>Toutes les photos prise lors d'un festival ou une personne est présente </span><h:commandButton action="#{search.SearchPictureSamsungOnePersonDuringConcert}" value="Récupérer Toutes les photos prise lors d'un festival ou une personne est présente"/>
+        </h:form>
+        
+        
+        
         
         
         

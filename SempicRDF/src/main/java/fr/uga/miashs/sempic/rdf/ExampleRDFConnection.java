@@ -26,12 +26,17 @@ public class ExampleRDFConnection {
         
         RDFConnection cnx = RDFConnectionFactory.connect(ENDPOINT_QUERY, ENDPOINT_UPDATE, ENDPOINT_GSP);
         //Récupération de toutes les photos
-        //QueryExecution qe = cnx.query("SELECT DISTINCT ?s WHERE {?s a  <http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture>}");
+        //  <http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture>}");
         
-        //Récupère tout les personnes
-        QueryExecution qe = cnx.query("SELECT distinct ?picture ?title\n" +
-                "  WHERE { ?picture a <http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Picture>; <http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#Title> ?title.}");
-        
+        QueryExecution qe = cnx.query("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> prefix projet: <http://www.semanticweb.org/edouard/ontologies/2020/0/projetOntology.owl#> \n"+
+                "SELECT DISTINCT ?picture ?Appareil\n" +
+"  WHERE {\n" +
+"    ?picture a projet:Picture;\n" +
+"        projet:Taken_By ?Appareil.\n" +
+"  \n" +
+"  	?Appareil a projet:Camera\n" +
+"}");
+
         ResultSet rs = qe.execSelect();
         while (rs.hasNext()) {
             QuerySolution qs = rs.next();
